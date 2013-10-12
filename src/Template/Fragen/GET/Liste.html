@@ -1,0 +1,29 @@
+
+        <h1>Liste der Fragen</h1>
+
+        #IF:is_array($this->_objResponse->arrQuestions)#
+        <table class="ui-widget ui-widget-content">
+            <thead>
+                <tr class="ui-widget-header">
+                    <th>#ID</th>
+                    <th>Frage</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody id="lisGame">
+                #FOREACH:arrQuestions#
+                <tr>
+                    <td>#VAR:UID#</td>
+                    <td>#VAR:strQuestion#</td>
+                    <td>
+
+                    </td>
+                </tr>
+                #/FOREACH#
+            </tbody>
+        </table>
+        #/IF#
+
+        #IF:!is_array($this->_objResponse->arrQuestions)#
+        <h3>Derzeit keine offenen Spiele</h3>
+        #/IF#

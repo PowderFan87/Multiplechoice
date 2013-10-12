@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+<!--
+    Validate form configuration
+-->
+
+<xs:schema version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+    <xs:element name="form">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="name" type="xs:string" />
+                <xs:element name="fieldlist">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="field" type="fieldtype" maxOccurs="unbounded" />
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="fieldtype">
+        <xs:sequence>
+            <xs:element name="name" type="xs:string" />
+            <xs:element name="type" type="xs:string" />
+            <xs:element name="validatorlist">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="validator" type="validatortype" maxOccurs="unbounded" />
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="validatortype" />
+
+    <xs:complexType name="notEmpty">
+        <xs:complexContent>
+            <xs:extension base="validatortype">
+                <xs:sequence>
+                    <xs:element name="name" type="xs:string" fixed="notEmpty" />
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="hasLength">
+        <xs:complexContent>
+            <xs:extension base="validatortype">
+                <xs:sequence>
+                    <xs:element name="name" type="xs:string" fixed="hasLength" />
+                    <xs:element name="min" type="xs:integer" minOccurs="0" />
+                    <xs:element name="max" type="xs:integer" minOccurs="0" />
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="isEmail">
+        <xs:complexContent>
+            <xs:extension base="validatortype">
+                <xs:sequence>
+                    <xs:element name="name" type="xs:string" fixed="isEmail" />
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+
+</xs:schema>

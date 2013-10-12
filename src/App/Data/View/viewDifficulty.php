@@ -1,11 +1,11 @@
 <?php
-class viewQuestion extends App_Data_View_Base
+class viewDifficulty extends App_Data_View_Base
 {
-    const VIEW_NAME    = 'tblquestion';
+    const VIEW_NAME    = 'tbldifficulty';
     const VIEW_PK      = 'UID';
-    const VIEW_ARCLASS = 'Question';
+    const VIEW_ARCLASS = 'Difficulty';
 
-    public static function getAllquestions($blnObjects = true) {
+    public static function getAlldifficulties($blnObjects = true) {
         $strARClass = 'App_Data_' . self::VIEW_ARCLASS;
         $strQuery   = '
 SELECT

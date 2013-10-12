@@ -1,10 +1,4 @@
 <?php
-
-/**
- * Basic request class
- *
- * @author Holger Szüsz <hszuesz@live.com>
- */
 abstract class Core_Web_Request
 {
     protected $_strRequestmethode;

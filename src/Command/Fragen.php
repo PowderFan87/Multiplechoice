@@ -1,9 +1,4 @@
 <?php
-/**
- * Description of Fragen
- *
- * @author Holger Szüsz <hszuesz@live.com>
- */
 class Command_Fragen extends Core_Base_Command implements IHttpRequest
 {
     public function getListe() {

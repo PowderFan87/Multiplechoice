@@ -44,12 +44,6 @@ if(isset($_SERVER['REDIRECT_URL'])) {
     $_SERVER['REDIRECT_URL'] = str_replace(CFG_WEB_ROOT, '', $_SERVER['REDIRECT_URL']);
 }
 
-/**
- * PHP Autoloader function
- *
- * @author Holger Szüsz <hszuesz@live.com>
- * @param String $strClassname
- */
 function __autoload($strClassname) {
     if(substr($strClassname, 0, 1) === 'I') {
         include_once INTERFACE_DIR . str_replace('_', DIRECTORY_SEPARATOR, $strClassname) . '.php';

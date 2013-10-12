@@ -1,10 +1,4 @@
 <?php
-
-/**
- * Security pre hook
- *
- * @author Holger Szüsz <hszuesz@live.com>
- */
 class App_Hook_Security implements IPrehook
 {
     /**

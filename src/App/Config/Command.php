@@ -1,10 +1,4 @@
 <?php
-
-/**
- * Loading and evaluating command configuration
- *
- * @author Holger Szüsz <hszuesz@live.com>
- */
 class App_Config_Command
 {
     /**

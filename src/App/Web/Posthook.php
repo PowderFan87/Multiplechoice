@@ -1,10 +1,4 @@
 <?php
-
-/**
- * Class for post hook collection management
- *
- * @author Holger Szüsz <hszuesz@live.com>
- */
 class App_Web_Posthook extends Core_Base_Hook
 {
     /**

@@ -1,9 +1,4 @@
 <?php
-/**
- * Description of Question
- *
- * @author Holger Szüsz <hszuesz@live.com>
- */
 class App_Data_Question extends App_Data_Base
 {
     const   VIEW_CLASS = 'viewQuestion';

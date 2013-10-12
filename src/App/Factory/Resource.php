@@ -1,10 +1,4 @@
 <?php
-
-/**
- * Resource factory
- *
- * @author Holger Szüsz <hszuesz@live.com>
- */
 class App_Factory_Resource
 {
     private static $_objResource = NULL;

@@ -1,11 +1,11 @@
 <?php
-class viewQuestion extends App_Data_View_Base
+class viewAnswer extends App_Data_View_Base
 {
-    const VIEW_NAME    = 'tblquestion';
+    const VIEW_NAME    = 'tblanswer';
     const VIEW_PK      = 'UID';
-    const VIEW_ARCLASS = 'Question';
+    const VIEW_ARCLASS = 'Answer';
 
-    public static function getAllquestions($blnObjects = true) {
+    public static function getAllanswers($blnObjects = true) {
         $strARClass = 'App_Data_' . self::VIEW_ARCLASS;
         $strQuery   = '
 SELECT

@@ -1,10 +1,4 @@
 <?php
-
-/**
- * Basic response class
- *
- * @author Holger Szüsz <hszuesz@live.com>
- */
 abstract class Core_Web_Response
 {
     protected $_strResponsetype;

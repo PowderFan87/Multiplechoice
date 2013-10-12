@@ -1,10 +1,4 @@
 <?php
-
-/**
- * Main command and action collection
- *
- * @author Holger Szüsz <hszuesz@live.com>
- */
 class Command_Main extends Core_Base_Command implements IHttpRequest
 {
     /**

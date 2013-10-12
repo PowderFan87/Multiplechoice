@@ -1,10 +1,4 @@
 <?php
-
-/**
- * Security factory
- *
- * @author Holger Szüsz <hszuesz@live.com>
- */
 class App_Factory_Security
 {
     private static $_objSecurity = NULL;

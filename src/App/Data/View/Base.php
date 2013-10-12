@@ -1,10 +1,4 @@
 <?php
-
-/**
- * Basic table data class with all methodes that all tables have in commen
- *
- * @author Holger Szüsz <hszuesz@live.com>
- */
 abstract class App_Data_View_Base
 {
     const VIEW_NAME    = 'undefined';

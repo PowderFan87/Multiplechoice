@@ -1,10 +1,4 @@
 <?php
-
-/**
- * XHTTP request object
- *
- * @author Holger Szüsz <hszuesz@live.com>
- */
 class Core_Web_XHttpRequest extends Core_Web_Request
 {
     /**

@@ -1,10 +1,4 @@
 <?php
-
-/**
- * Basic template engine class
- *
- * @author Holger Szüsz <hszuesz@live.com>
- */
 class Core_Web_Template
 {
     protected $_txtOutput = '';

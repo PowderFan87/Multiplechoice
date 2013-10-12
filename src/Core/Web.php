@@ -1,11 +1,4 @@
 <?php
-
-/**
- * MVC root class. Entry point into application.
- * Initialize basic configuration of request and response
- *
- * @author Holger Szüsz <hszuesz@live.com>
- */
 class Core_Web
 {
     private $_arrCommandconf;

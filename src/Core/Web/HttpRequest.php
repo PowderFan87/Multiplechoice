@@ -1,10 +1,4 @@
 <?php
-
-/**
- * HTTP request object
- *
- * @author Holger Szüsz <hszuesz@live.com>
- */
 class Core_Web_HttpRequest extends Core_Web_Request
 {
     /**

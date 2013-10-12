@@ -1,11 +1,4 @@
 <?php
-
-/**
- * Subtemplate class for all subtemplates in templates (or subtemplate...this
- * could go on and on...)
- *
- * @author Holger Szüsz <hszuesz@live.com>
- */
 class Core_Web_Template_Subtemplate extends Core_Web_Template
 {
     /**

@@ -1,10 +1,4 @@
 <?php
-
-/**
- * Class for pre hook collection management
- *
- * @author Holger Szüsz <hszuesz@live.com>
- */
 class App_Web_Prehook extends Core_Base_Hook
 {
     /**

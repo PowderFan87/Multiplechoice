@@ -1,10 +1,4 @@
 <?php
-
-/**
- * COlelction of varius validators
- *
- * @author Holger Szüsz <hszuesz@live.com>
- */
 class App_Tools_Validator
 {
     /**

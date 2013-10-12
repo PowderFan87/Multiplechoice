@@ -1,10 +1,4 @@
 <?php
-
-/**
- * Security class for web application
- *
- * @author Holger Szüsz <hszuesz@live.com>
- */
 class App_Web_Security
 {
     private $_objUser = NULL;

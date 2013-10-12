@@ -1,10 +1,4 @@
 <?php
-
-/**
- * Abstract base class for hook collection management
- *
- * @author Holger Szüsz <hszuesz@live.com>
- */
 abstract class Core_Base_Hook implements Iterator, Countable
 {
     protected $_lngPosition = 0;

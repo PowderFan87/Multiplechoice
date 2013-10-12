@@ -1,10 +1,4 @@
 <?php
-
-/**
- * MySQL DB resource connector
- *
- * @author Holger Szüsz <hszuesz@live.com>
- */
 class Resource_DB_MySQL implements IResource
 {
     private $_resDb;

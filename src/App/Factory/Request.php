@@ -1,10 +1,4 @@
 <?php
-
-/**
- * Factory for Request object
- *
- * @author Holger Szüsz <hszuesz@live.com>
- */
 class App_Factory_Request
 {
     private static $_objRequest = NULL;

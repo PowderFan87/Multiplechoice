@@ -1,10 +1,4 @@
 <?php
-
-/**
- * Response factory
- *
- * @author Holger Szüsz <hszuesz@live.com>
- */
 class App_Factory_Response
 {
     private static $_objResponse = NULL;

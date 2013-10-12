@@ -1,10 +1,4 @@
 <?php
-
-/**
- * Base AR class for all AR objects common factors
- *
- * @author Holger Szüsz <hszuesz@live.com>
- */
 abstract class App_Data_Base
 {
     const   VIEW_CLASS = 'undefined';

@@ -1,10 +1,4 @@
 <?php
-
-/**
- * Main command and action collection
- *
- * @author Holger Szüsz <hszuesz@live.com>
- */
 class Command_Main extends Core_Base_Command implements IHttpRequest
 {
     /**
@@ -15,12 +9,23 @@ class Command_Main extends Core_Base_Command implements IHttpRequest
         $this->_objResponse->tplContent     = 'Main_GET_Main';
 
         $this->_objResponse->strTitle       .= ' - Home';
-        $this->_objResponse->strWellcome    = 'Willkommen beim 4-Gewinnt';
+        $this->_objResponse->strWellcome    = 'Willkommen im Verwaltungstool der Multiple Choice-Prüfungssoftware';
 
-        $objQuestion = viewQuestion::getBypk(2);
-
+        $objQuestion = viewQuestion::getBypk(1);
         $this->_objResponse->strQuestion = $objQuestion->getstrQuestion();
 
+        $objAnswer = viewAnswer::getBypk(1);
+        $this->_objResponse->strAnswer = $objAnswer->getstrAnswer();
+        
+        $objBackenduser = viewBackenduser::getBypk(1);
+        $this->_objResponse->strBackenduser = $objQuestion->getstrBackenduser();
+        
+        $objQuestion = viewCategory::getBypk(1);
+        $this->_objResponse->strCategory = $objQuestion->getstrCategory();
+        
+        $objQuestion = viewDifficulty::getBypk(1);
+        $this->_objResponse->strDifficulty = $objQuestion->getstrDifficulty();
+        
 //        $objQuestion->setstrQuestion('Ja das war ne Frage?');
 //        $objQuestion->doFullupdate();
 //
@@ -47,7 +52,7 @@ class Command_Main extends Core_Base_Command implements IHttpRequest
         $this->_objResponse->tplContent    = 'Main_GET_404';
 
         $this->_objResponse->strTitle       .= ' - 404';
-        $this->_objResponse->strWellcome    = 'UPS! Das gibt es nicht...';
+        $this->_objResponse->strWellcome    = 'Oops! Seite ist nicht vorhanden ...';
     }
 
     /**

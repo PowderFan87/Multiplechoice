@@ -1,10 +1,4 @@
 <?php
-
-/**
- * Command base class
- *
- * @author Holger Szüsz <hszuesz@live.com>
- */
 abstract class Core_Base_Command
 {
     protected $_objRequest;

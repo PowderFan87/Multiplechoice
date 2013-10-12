@@ -6,11 +6,11 @@ class App_Data_Answer extends App_Data_Base
 
     protected function getEmpryarray() {
         return array(
-            /*'strQuestion'           => '',
+            'strAnswer'             => '',
             'lngCountshowed'        => 0,
-            'lngOpttime'            => 0,
-            'tbldifficulty_UID'     => NULL,
-            'tblbackenduser_UID'    => NULL*/
+            'lngCountselected'      => 0,
+            'blnTrue'               => 0,
+            'tblquestion_UID'       => NULL
         );
     }
 }

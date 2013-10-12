@@ -6,11 +6,7 @@ class App_Data_Backenduser extends App_Data_Base
 
     protected function getEmpryarray() {
         return array(
-            /*'strQuestion'           => '',
-            'lngCountshowed'        => 0,
-            'lngOpttime'            => 0,
-            'tbldifficulty_UID'     => NULL,
-            'tblbackenduser_UID'    => NULL*/
+            'strName'           => ''
         );
     }
 }

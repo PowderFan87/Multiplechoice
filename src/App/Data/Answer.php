@@ -4,7 +4,7 @@ class App_Data_Answer extends App_Data_Base
     const   VIEW_CLASS = 'viewAnswer';
     const   VIEW_PK    = 'UID';
 
-    protected function getEmpryarray() {
+    protected function _getEmpryarray() {
         return array(
             'strAnswer'             => '',
             'lngCountshowed'        => 0,

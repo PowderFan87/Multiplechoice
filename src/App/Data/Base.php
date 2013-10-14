@@ -18,7 +18,7 @@ abstract class App_Data_Base
         if(is_array($arrData)) {
             $this->_arrData = $arrData;
         } else {
-            $this->_arrData = $this->getEmpryarray();
+            $this->_arrData = $this->_getEmpryarray();
         }
     }
 
@@ -121,5 +121,5 @@ abstract class App_Data_Base
     /**
      * define abstract methode getEmptyarray() to be implemented by extending class
      */
-    abstract protected function getEmpryarray();
+    abstract protected function _getEmpryarray();
 }

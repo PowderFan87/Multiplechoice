@@ -64,7 +64,7 @@ class Command_Schwierigkeiten extends Core_Base_Command implements IHttpRequest
             if(!$objDifficulty->doInsert()) {
                 $this->_objResponse->strMessage = 'FEHLER!!!';
             } else {
-                $this->_objResponse->strMessage = 'Angelegt';
+                header("Location: " . CFG_WEB_ROOT . "/Schwierigkeiten/Liste");
             }
         }
     }
@@ -103,8 +103,6 @@ class Command_Schwierigkeiten extends Core_Base_Command implements IHttpRequest
                 header("Location: " . CFG_WEB_ROOT . "/Schwierigkeiten/Liste");
             }
         }
-
-
     }
 
     private function _fillTemplate(App_Data_Difficulty $objDifficulty) {

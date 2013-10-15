@@ -33,21 +33,88 @@ class Command_Benutzer extends Core_Base_Command implements IHttpRequest
 
     public function postNeu() {
         $this->_objResponse->tplContent = 'Benutzer_POST_Neu';
+
+        $arrErrors  = $this->_doValidate();
+
+        if(!empty($arrErrors)) {
+            $this->_objResponse->tplContent = 'Benutzer_GET_Neu';
+
+            $this->_objResponse->executed = true;
+
+            foreach($arrErrors as $strField => $blnError) {
+                if(!$blnError) {
+                    continue;
+                }
+
+                $strErrorvariable = 'ERROR_' . $strField;
+
+                $this->_objResponse->$strErrorvariable = 'error';
+            }
+
+            $this->_objResponse->strName    = $this->_objRequest->strName;
+        } else {
+            $objBackenduser = new App_Data_Backenduser();
+
+            $objBackenduser->setstrName($this->_objRequest->strName);
+
+            if(!$objBackenduser->doInsert()) {
+                $this->_objResponse->strMessage = 'FEHLER!!!';
+            } else {
+                header("Location: " . CFG_WEB_ROOT . "/Benutzer/Liste");
+            }
+        }
     }
 
     public function postBearbeiten() {
         $this->_objResponse->tplContent = 'Benutzer_POST_Bearbeiten';
 
-        $objBackenduser = viewBackenduser::getBypk($this->_objRequest->UID);
+        $arrErrors  = $this->_doValidate();
+
+        if(!empty($arrErrors)) {
+            $this->_objResponse->tplContent = 'Benutzer_GET_Bearbeiten';
+
+            $this->_objResponse->executed = true;
+
+            foreach($arrErrors as $strField => $blnError) {
+                if(!$blnError) {
+                    continue;
+                }
+
+                $strErrorvariable = 'ERROR_' . $strField;
+
+                $this->_objResponse->$strErrorvariable = 'error';
+            }
+
+            $this->_objResponse->strName    = $this->_objRequest->strName;
+        } else {
+            $objBackenduser = viewBackenduser::getBypk($this->_objRequest->UID);
+
+            $objBackenduser->setstrName($this->_objRequest->strName);
+
+            if(!$objBackenduser->doFullupdate()) {
+                $this->_objResponse->strMessage = 'FEHLER!!!';
+            } else {
+                header("Location: " . CFG_WEB_ROOT . "/Benutzer/Liste");
+            }
+        }
     }
 
-    private function _fillTemplate(App_Data_Category $objBackenduser) {
-        //@TODO Werte setzen
-
-        $this->_objResponse->arrBackendusers = $objBackenduser->getAllbackendusers();
+    private function _fillTemplate(App_Data_Backenduser $objBackenduser) {
+        $this->_objResponse->UID        = $objBackenduser->getUID();
+        $this->_objResponse->strName    = $objBackenduser->getstrName();
     }
     
     protected function _doInit() {
 
+    }
+    
+     protected function _doValidate() {
+        $arrErrors = array();
+
+        if(!App_Tools_Validator::hasStringlength($this->_objRequest->strName, 256, 5)) {
+            $arrErrors['strName'] = true;
+        }
+
+        return $arrErrors;
     }
 }

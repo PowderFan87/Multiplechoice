@@ -3,7 +3,7 @@ class App_Tools_Validator
 {
     /**
      * validate string for email format
-     * 
+     *
      * @param string $strEmail
      * @return boolean
      */
@@ -15,7 +15,7 @@ class App_Tools_Validator
 
     /**
      * Validate string to have a sertain length
-     * 
+     *
      * @param string $strValue
      * @param int $lngMax
      * @param int $lngMin
@@ -27,7 +27,7 @@ class App_Tools_Validator
 
     /**
      * Check if value is not empty
-     * 
+     *
      * @param mixed $mixValue
      * @return boolean
      */
@@ -37,7 +37,7 @@ class App_Tools_Validator
 
     /**
      * Check if values are equal
-     * 
+     *
      * @param mixed $mixValue1
      * @param mixed $mixValue2
      * @return boolean
@@ -48,7 +48,7 @@ class App_Tools_Validator
 
     /**
      * Check if string is valid username
-     * 
+     *
      * @param string $strUsername
      * @return boolean
      */
@@ -66,12 +66,16 @@ class App_Tools_Validator
 
     /**
      * Check if string matches given pattern
-     * 
+     *
      * @param string $strValue
      * @param string $strPattern
      * @return boolean
      */
     public static function isPattern($strValue, $strPattern) {
         return (preg_match($strPattern, $strValue) === 1);
+    }
+
+    public static function isLarger($lngValue, $lngMin) {
+        return ($lngValue > $lngMin);
     }
 }

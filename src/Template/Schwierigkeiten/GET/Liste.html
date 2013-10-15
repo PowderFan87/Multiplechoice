@@ -7,17 +7,15 @@
                 <tr class="ui-widget-header">
                     <th>#ID</th>
                     <th>Schwierigkeiten</th>
-                    <th></th>
+                    <th>Antwortzeit</th>
                 </tr>
             </thead>
             <tbody id="lisGame">
                 #FOREACH:arrDifficulties#
                 <tr>
                     <td>#VAR:UID#</td>
-                    <td>#VAR:strDifficulty#</td>
-                    <td>
-
-                    </td>
+                    <td>#VAR:strName#</td>
+                    <td>#VAR:lngTime#</td>
                 </tr>
                 #/FOREACH#
             </tbody>

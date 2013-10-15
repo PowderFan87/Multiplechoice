@@ -30,9 +30,11 @@
 </head>
 
 <body>
-<h1>Neue Schwierigkeit</h1>
+<h1>Schwierigkeit bearbeiten</h1>
 
         <form method="post">
+            <input type="hidden" name="UID" value="#VAR:UID#" />
+
             <table style="float: left;">
                 <tr>
                     <th><label for="strName" class="#VAR:ERROR_strName#">Schwierigkeit</label></th>
@@ -46,7 +48,7 @@
                 </tr>
                 <tr>
                     <td colspan="2">
-                        <input type="submit" value="Anlegen" />
+                        <input type="submit" value="Speichern" />
                     </td>
                 </tr>
             </table>

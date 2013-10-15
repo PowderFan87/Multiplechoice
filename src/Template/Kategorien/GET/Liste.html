@@ -1,20 +1,20 @@
 
-        <h1>Liste der Fragen</h1>
+        <h1>Liste der Kategorien</h1>
 
-        #IF:is_array($this->_objResponse->arrQuestions)#
+        #IF:is_array($this->_objResponse->arrCategories)#
         <table class="ui-widget ui-widget-content">
             <thead>
                 <tr class="ui-widget-header">
                     <th>#ID</th>
-                    <th>Frage</th>
+                    <th>Kategorie</th>
                     <th></th>
                 </tr>
             </thead>
             <tbody id="lisGame">
-                #FOREACH:arrQuestions#
+                #FOREACH:arrCategories#
                 <tr>
                     <td>#VAR:UID#</td>
-                    <td>#VAR:strQuestion#</td>
+                    <td>#VAR:strCategory#</td>
                     <td>
 
                     </td>
@@ -24,6 +24,6 @@
         </table>
         #/IF#
 
-        #IF:!is_array($this->_objResponse->arrQuestions)#
-        <h3>Keine Frage vorhanden!</h3>
+        #IF:!is_array($this->_objResponse->arrCategories)#
+        <h3>Keine Kategorien vorhanden!</h3>
         #/IF#

@@ -67,7 +67,7 @@ class Command_Fragen extends Core_Base_Command implements IHttpRequest
 
         //@TODO set values for diff, and category
 
-        $this->_objResponse->arrAnswers = $objQuestion->getAllanswers();
+        $this->_objResponse->arrQuestions = $objQuestion->getAllquestions();
     }
 
     protected function _doInit() {

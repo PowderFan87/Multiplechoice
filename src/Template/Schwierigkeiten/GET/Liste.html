@@ -1,0 +1,29 @@
+
+        <h1>Liste der Schwierigkeiten</h1>
+
+        #IF:is_array($this->_objResponse->arrDifficulties)#
+        <table class="ui-widget ui-widget-content">
+            <thead>
+                <tr class="ui-widget-header">
+                    <th>#ID</th>
+                    <th>Schwierigkeiten</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody id="lisGame">
+                #FOREACH:arrDifficulties#
+                <tr>
+                    <td>#VAR:UID#</td>
+                    <td>#VAR:strDifficulty#</td>
+                    <td>
+
+                    </td>
+                </tr>
+                #/FOREACH#
+            </tbody>
+        </table>
+        #/IF#
+
+        #IF:!is_array($this->_objResponse->arrDifficulties)#
+        <h3>Keine Schwierigkeiten vorhanden!</h3>
+        #/IF#

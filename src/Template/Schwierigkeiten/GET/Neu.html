@@ -1,0 +1,55 @@
+<head>
+    <script>
+  $(function() {
+    var spinner = $( "#lngTime" ).spinner();
+ 
+    $( "#disable" ).click(function() {
+      if ( spinner.spinner( "option", "disabled" ) ) {
+        spinner.spinner( "enable" );
+      } else {
+        spinner.spinner( "disable" );
+      }
+    });
+    $( "#destroy" ).click(function() {
+      if ( spinner.data( "ui-spinner" ) ) {
+        spinner.spinner( "destroy" );
+      } else {
+        spinner.spinner();
+      }
+    });
+    $( "#getvalue" ).click(function() {
+      alert( spinner.spinner( "value" ) );
+    });
+    $( "#setvalue" ).click(function() {
+      spinner.spinner( "value", 5 );
+    });
+ 
+    $( "button" ).button();
+  });
+  </script>
+</head>
+
+<body>    
+<h1>Neue Schwierigkeit</h1>
+
+        <form method="post">
+            <table style="float: left;">
+                <tr>
+                    <th><label for="strName" class="#VAR:ERROR_strQuestion#">Schwierigkeit</label></th>
+                    <td><input type="text" id="strName" name="strName" value="#VAR:strName#" class="text ui-widget-content ui-corner-all" /></td>
+                </tr>
+                <tr>
+                    <th><label for="lngTime" class="#VAR:ERROR_strQuestion#">Bearbeitungszeit</label></th>
+                    <td>
+                        <input id="lngTime" name="lngTime" value="#VAR:lngTime#" class="text ui-widget-content ui-corner-all" />
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <input type="submit" value="Anlegen" />
+                    </td>
+                </tr>
+            </table>
+            <br clear="all" />&nbsp;<br />
+        </form>
+</body>

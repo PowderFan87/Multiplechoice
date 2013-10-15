@@ -1,0 +1,29 @@
+
+        <h1>Liste der Benutzer</h1>
+
+        #IF:is_array($this->_objResponse->arrBackendusers)#
+        <table class="ui-widget ui-widget-content">
+            <thead>
+                <tr class="ui-widget-header">
+                    <th>#ID</th>
+                    <th>Benutzer</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody id="lisGame">
+                #FOREACH:arrBackendusers#
+                <tr>
+                    <td>#VAR:UID#</td>
+                    <td>#VAR:strBackenduser#</td>
+                    <td>
+
+                    </td>
+                </tr>
+                #/FOREACH#
+            </tbody>
+        </table>
+        #/IF#
+
+        #IF:!is_array($this->_objResponse->arrBackendusers)#
+        <h3>Keine Benutzer vorhanden!</h3>
+        #/IF#

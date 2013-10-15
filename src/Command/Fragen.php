@@ -20,7 +20,15 @@ class Command_Fragen extends Core_Base_Command implements IHttpRequest
     }
 
     public function getNeu() {
-        $this->_objResponse->tplContent = 'Fragen_GET_Neu';
+        $this->_objResponse->tplContent             = 'Fragen_GET_Neu';
+
+        $this->_objResponse->tplCategoryselection   = 'Widget_categoryselection';
+        $this->_objResponse->tplDifficultyselection = 'Widget_difficultyselection';
+
+        $arrCategories = viewCategory::getAlltopcategories(false);
+
+        $this->_objResponse->arrCategories      = $arrCategories;
+        $this->_objResponse->arrDifficulties    = viewDifficulty::getAlldifficulties(false);
     }
 
     public function getBearbeiten() {

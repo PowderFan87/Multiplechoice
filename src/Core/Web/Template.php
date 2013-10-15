@@ -6,7 +6,7 @@ class Core_Web_Template
 
     /**
      *Init template engine and load base or given tempalte.
-     * 
+     *
      * @param Core_Web_Response $objResponse
      */
     public function __construct($objResponse) {
@@ -29,7 +29,7 @@ class Core_Web_Template
 
     /**
      * Evaluate template marker and return final string
-     * 
+     *
      * @return string
      */
     public function __toString() {
@@ -46,7 +46,7 @@ class Core_Web_Template
 
     /**
      * Replace CONST marker with value from constant
-     * 
+     *
      * @param array $arrMatch
      * @return mixed
      */
@@ -56,7 +56,7 @@ class Core_Web_Template
 
     /**
      * Replace VAR marker with value from response class
-     * 
+     *
      * @param array $arrMatch
      * @return mixed
      */
@@ -66,7 +66,7 @@ class Core_Web_Template
 
     /**
      * Relace TPL marker with value of subtemplate
-     * 
+     *
      * @param array $arrMatch
      * @return string
      */
@@ -78,7 +78,7 @@ class Core_Web_Template
 
     /**
      * Evaluate IF marker and statement and remove or leave block.
-     * 
+     *
      * @param array $arrMatch
      * @return string
      */
@@ -96,7 +96,7 @@ class Core_Web_Template
 
     /**
      * Evaluate FOREACH marker to display a block N times.
-     * 
+     *
      * @param array $arrMatch
      * @return string
      */

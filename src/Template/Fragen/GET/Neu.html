@@ -1,4 +1,35 @@
+<head>
+    <script>
+  $(function() {
+    var spinner = $( "#lngOpttime" ).spinner();
+ 
+    $( "#disable" ).click(function() {
+      if ( spinner.spinner( "option", "disabled" ) ) {
+        spinner.spinner( "enable" );
+      } else {
+        spinner.spinner( "disable" );
+      }
+    });
+    $( "#destroy" ).click(function() {
+      if ( spinner.data( "ui-spinner" ) ) {
+        spinner.spinner( "destroy" );
+      } else {
+        spinner.spinner();
+      }
+    });
+    $( "#getvalue" ).click(function() {
+      alert( spinner.spinner( "value" ) );
+    });
+    $( "#setvalue" ).click(function() {
+      spinner.spinner( "value", 5 );
+    });
+ 
+    $( "button" ).button();
+  });
+  </script>
+</head>
 
+<body>
         <h1>Neue Frage</h1>
 
         <form method="post">
@@ -6,7 +37,7 @@
                 <tr>
                     <th><label for="strQuestion" class="#VAR:ERROR_strQuestion#">Frage</label></th>
                     <td>
-                        <textarea id="strQuestion" name="strQuestion" class="text ui-widget-content ui-corner-all">#VAR:strQuestion#</textarea>
+                        <textarea id="strQuestion" name="strQuestion" cols="50" rows="5" class="text ui-widget-content ui-corner-all">#VAR:strQuestion#</textarea>
                     </td>
                 </tr>
                 <tr>
@@ -29,7 +60,7 @@
                 </tr>
                 <tr>
                     <th><label for="lngOpttime">Anzeigezeit (optional)</label></th>
-                    <td><input type="text" id="lngOpttime" name="lngOpttime" value="#VAR:lngOpttime#" class="text ui-widget-content ui-corner-all" /></td>
+                    <td><input id="lngOpttime" name="lngOpttime" value="#VAR:lngOpttime#" class="text ui-widget-content ui-corner-all" /></td>
                 </tr>
                 <tr>
                     <td colspan="2">
@@ -145,3 +176,4 @@
                 });
             });
         </script>
+</body>

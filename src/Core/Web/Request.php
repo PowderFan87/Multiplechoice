@@ -6,11 +6,11 @@ abstract class Core_Web_Request
 
     /**
      * Init request
-     * 
+     *
      */
     public function __construct() {
         $this->_doFetchdata();
-
+        
         $this->_doSanatize();
     }
 
@@ -20,7 +20,7 @@ abstract class Core_Web_Request
 
     /**
      * get any request parameter from collection
-     * 
+     *
      * @param string $strProperty
      * @return mixed|boolean
      */
@@ -28,13 +28,13 @@ abstract class Core_Web_Request
         if(isset($this->_arrData[$strProperty])) {
             return $this->_arrData[$strProperty];
         }
-        
+
         return false;
     }
 
     /**
      * Get reqeust methode
-     * 
+     *
      * @return string
      */
     public function getStrrequestmethode() {
@@ -48,7 +48,7 @@ abstract class Core_Web_Request
     /**
      * Sanatize input for later use. Strip all tags and escape string.
      * If the value is an array the methode is executed recursive.
-     * 
+     *
      * @param array|null $arrData
      * @return array|null
      */
@@ -63,16 +63,20 @@ abstract class Core_Web_Request
             }
         } else {
             foreach($arrData as $mixKey => $mixValue) {
-                $arrData[$mixKey] = @mysql_escape_string(strip_tags($mixValue));
+                if(is_array($arrData[$mixKey])) {
+                    $arrData[$mixKey] = $this->_doSanatize($arrData[$mixKey]);
+                } else {
+                    $arrData[$mixKey] = @mysql_escape_string(strip_tags($mixValue));
+                }
             }
-            
+
             return $arrData;
         }
     }
 
     /**
      * Prevent cloneing
-     * 
+     *
      */
     private function __clone() {
         ;

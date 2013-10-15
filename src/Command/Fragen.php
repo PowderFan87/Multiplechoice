@@ -39,6 +39,8 @@ class Command_Fragen extends Core_Base_Command implements IHttpRequest
         if(!empty($arrErrors)) {
             $this->_objResponse->tplContent = 'Fragen_GET_Neu';
 
+            $this->_objResponse->executed = true;
+
             foreach($arrErrors as $strField => $blnError) {
                 if(!$blnError) {
                     continue;
@@ -48,6 +50,12 @@ class Command_Fragen extends Core_Base_Command implements IHttpRequest
 
                 $this->_objResponse->$strErrorvariable = 'error';
             }
+
+            $this->_objResponse->antwortcount   = count($this->_objRequest->antwort)-1;
+            $this->_objResponse->antwort        = $this->_objRequest->antwort;
+            $this->_objResponse->strQuestion    = $this->_objRequest->strQuestion;
+            $this->_objResponse->lngOpttime     = $this->_objRequest->lngOpttime;
+
         } else {
             //@TODO create new question
         }
@@ -82,8 +90,8 @@ class Command_Fragen extends Core_Base_Command implements IHttpRequest
     private function _doValidate() {
         $arrErrors = array();
 
-        if(!App_Tools_Validator::hasStringlength($this->_objRequest->strQuestion, 256, 20)) {
-            $arrErrors['strName'] = true;
+        if(!App_Tools_Validator::hasStringlength($this->_objRequest->strQuestion, 256, 50)) {
+            $arrErrors['strQuestion'] = true;
         }
 
         return $arrErrors;

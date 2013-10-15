@@ -1,0 +1,145 @@
+
+        <h1>Neue Frage</h1>
+
+        <form method="post">
+            <table style="float: left;">
+                <tr>
+                    <th><label for="strQuestion" class="#VAR:ERROR_strQuestion#">Frage</label></th>
+                    <td>
+                        <textarea id="strQuestion" name="strQuestion" class="text ui-widget-content ui-corner-all">#VAR:strQuestion#</textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <th><label for="category">Kategorie</label></th>
+                    <td>
+                        <select id="category" name="category" multiple="multiple" size="3" class="text ui-widget-content ui-corner-all">
+                            <option value="-">--- Auswahl ---</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th><label for="dificulty">Schwierigkeit</label></th>
+                    <td>
+                        <select id="dificulty" name="dificulty" class="text ui-widget-content ui-corner-all">
+                            <option value="-">--- Auswahl ---</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th><label for="lngOpttime">Anzeigezeit (optional)</label></th>
+                    <td><input type="text" id="lngOpttime" name="lngOpttime" value="#VAR:lngOpttime#" class="text ui-widget-content ui-corner-all" /></td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <input type="submit" value="Anlegen" />
+                    </td>
+                </tr>
+            </table>
+            <table style="float: left; margin-left: 50px;">
+                <thead>
+                    <tr>
+                        <th>Antwort:</th>
+                        <th>Richtig?</th>
+                    </tr>
+                </thead>
+                <tbody id="answerlist">
+                    #IF:$this->_objResponse->executed!==true#
+                    <tr>
+                        <td>
+                            <input type="hidden" name="antwort[0][id]" value="0" />
+                            <input type="text" name="antwort[0][text]" class="text ui-widget-content ui-corner-all" />
+                        </td>
+                        <td>
+                            <input type="checkbox" name="antwort[0][true]" value="checked" class="text ui-widget-content ui-corner-all" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="hidden" name="antwort[1][id]" value="1" />
+                            <input type="text" name="antwort[1][text]" class="text ui-widget-content ui-corner-all" />
+                        </td>
+                        <td>
+                            <input type="checkbox" name="antwort[1][true]" value="checked" class="text ui-widget-content ui-corner-all" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="hidden" name="antwort[2][id]" value="2" />
+                            <input type="text" name="antwort[2][text]" class="text ui-widget-content ui-corner-all" />
+                        </td>
+                        <td>
+                            <input type="checkbox" name="antwort[2][true]" value="checked" class="text ui-widget-content ui-corner-all" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="hidden" name="antwort[3][id]" value="3" />
+                            <input type="text" name="antwort[3][text]" class="text ui-widget-content ui-corner-all" />
+                        </td>
+                        <td>
+                            <input type="checkbox" name="antwort[3][true]" value="checked" class="text ui-widget-content ui-corner-all" />
+                        </td>
+                    </tr>
+                    #/IF#
+                    #IF:$this->_objResponse->executed===true#
+                    #FOREACH:antwort#
+                    <tr>
+                        <td>
+                            <input type="hidden" name="antwort[#VAR:id#][id]" value="#VAR:id#" />
+                            <input type="text" name="antwort[#VAR:id#][text]" value="#VAR:text#" class="text ui-widget-content ui-corner-all" />
+                        </td>
+                        <td>
+                            <input type="checkbox" name="antwort[#VAR:id#][true]" value="checked" #VAR:true# class="text ui-widget-content ui-corner-all" />
+                        </td>
+                    </tr>
+                    #/FOREACH#
+                    #/IF#
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="2">
+                            <button id="addAnswer">add answer</button>
+                            <button id="remAnswer">remove answer</button>
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+
+            <br clear="all" />&nbsp;<br />
+        </form>
+
+        <script type="text/javascript">
+            #IF:$this->_objResponse->executed!==true#
+            ac = 3;
+            #/IF#
+
+            #IF:$this->_objResponse->executed===true#
+            ac = #VAR:antwortcount#;
+            #/IF#
+
+            $(document).ready(function(){
+                $("#addAnswer").button({
+                    icons: {
+                        primary: "ui-icon-plusthick"
+                    },
+                    text: false
+                }).click(function(e){
+                    e.preventDefault();
+                    ac++;
+                    r='<tr><td><input type="hidden" name="antwort['+ac+'][id]" value="'+ac+'" /><input type="text" name="antwort['+ac+'][text]" class="text ui-widget-content ui-corner-all" /></td><td><input type="checkbox" name="antwort['+ac+'][true]" value="checked" class="text ui-widget-content ui-corner-all" /></td></tr>'
+                    $("#answerlist").append(r);
+                });
+
+                $("#remAnswer").button({
+                    icons: {
+                        primary: "ui-icon-minusthick"
+                    },
+                    text: false
+                }).click(function(e){
+                    e.preventDefault();
+                    if(ac==3){return false;}
+                    $("input[name='antwort["+ac+"][text]']").parent().parent().remove();
+                    ac--;
+                });
+            });
+        </script>

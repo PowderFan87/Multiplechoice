@@ -32,15 +32,15 @@ FROM
         }
     }
 
-public static function getAllAnswersByQuestionUID($lngUID, $blnObjects)
-{
-     $strARClass = 'App_Data_' . self::VIEW_ARCLASS;
-        $strQuery   = '
+    public static function getAllAnswersByQuestionUID($lngUID, $blnObjects = true) {
+         $strARClass = 'App_Data_' . self::VIEW_ARCLASS;
+         $strQuery   = '
 SELECT
     *
 FROM
     ' . self::VIEW_NAME . '
-WHERE tblquestion_UID == ' . $lngUID;
+WHERE
+    tblquestion_UID = ' . $lngUID;
 
         try {
             $arrData        = App_Factory_Resource::getResource()->read($strQuery, true);
@@ -59,6 +59,6 @@ WHERE tblquestion_UID == ' . $lngUID;
         } catch (Resource_Exception $e) {
             return NULL;
         }
-}
+    }
 
 }

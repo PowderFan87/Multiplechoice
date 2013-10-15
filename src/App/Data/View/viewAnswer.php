@@ -11,9 +11,7 @@ class viewAnswer extends App_Data_View_Base
 SELECT
     *
 FROM
-    ' . self::VIEW_NAME & '
-WHERE                
-    UID = ' . self::VIEW_PK;
+    ' . self::VIEW_NAME;
 
         try {
             $arrData        = App_Factory_Resource::getResource()->read($strQuery, true);

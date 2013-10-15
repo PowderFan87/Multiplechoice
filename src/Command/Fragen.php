@@ -33,6 +33,24 @@ class Command_Fragen extends Core_Base_Command implements IHttpRequest
 
     public function postNeu() {
         $this->_objResponse->tplContent = 'Fragen_POST_Neu';
+
+        $arrErrors  = $this->_doValidate();
+
+        if(!empty($arrErrors)) {
+            $this->_objResponse->tplContent = 'Fragen_GET_Neu';
+
+            foreach($arrErrors as $strField => $blnError) {
+                if(!$blnError) {
+                    continue;
+                }
+
+                $strErrorvariable = 'ERROR_' . $strField;
+
+                $this->_objResponse->$strErrorvariable = 'error';
+            }
+        } else {
+            //@TODO create new question
+        }
     }
 
     public function postBearbeiten() {
@@ -42,12 +60,32 @@ class Command_Fragen extends Core_Base_Command implements IHttpRequest
     }
 
     private function _fillTemplate(App_Data_Question $objQuestion) {
-        //@TODO Werte setzen
+
+        $this->_objResponse->UID            = $objQuestion->getUID();
+        $this->_objResponse->strQuestion    = $objQuestion->getstrQuestion();
+        $this->_objResponse->lngOpttime     = $objQuestion->getlngOpttime();
+
+        //@TODO set values for diff, and category
 
         $this->_objResponse->arrAnswers = $objQuestion->getAllanswers();
     }
 
     protected function _doInit() {
 
+    }
+
+    /**
+     * Validate request data for new game
+     *
+     * @return boolean
+     */
+    private function _doValidate() {
+        $arrErrors = array();
+
+        if(!App_Tools_Validator::hasStringlength($this->_objRequest->strQuestion, 256, 20)) {
+            $arrErrors['strName'] = true;
+        }
+
+        return $arrErrors;
     }
 }

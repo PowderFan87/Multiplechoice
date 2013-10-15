@@ -8,6 +8,10 @@ class App_Data_Question extends App_Data_Base
         //@TODO aufruf für antworten by frage id
     }
 
+    public function addAnswer(App_Data_Answer $objAnswer) {
+        //@TODO add Answer
+    }
+
     protected function _getEmpryarray() {
         return array(
             'strQuestion'           => '',

@@ -36,12 +36,12 @@ nav a:hover {
 }
 
 nav a:hover {
-    color: #FF0000;
+    color: #F6A828;
 
-    -webkit-text-shadow: 0px 0px 25px #E3001B;
-    -moz-text-shadow: 0px 0px 25px #E3001B;
-    -o-text-shadow: 0px 0px 25px #E3001B;
-    text-shadow: 0px 0px 25px #E3001B;
+    -webkit-text-shadow: 0px 0px 25px #F6A828;
+    -moz-text-shadow: 0px 0px 25px #F6A828;
+    -o-text-shadow: 0px 0px 25px #F6A828;
+    text-shadow: 0px 0px 25px #F6A828;
 }
 
 nav div, nav a {
@@ -55,7 +55,7 @@ nav div nav.sub {
     padding-left: 10px;
     margin-left: -10px;
     display: none;
-    
+
     -webkit-box-shadow: 0px 0px 10px 5px #FFFFFF, 0px 10px 10px 0px #FFFFFF;
     -moz-box-shadow: 0px 0px 10px 5px #FFFFFF, 0px 10px 10px 0px #FFFFFF;
     -o-box-shadow: 0px 0px 10px 5px #FFFFFF, 0px 10px 10px 0px #FFFFFF;
@@ -83,144 +83,6 @@ th {
     margin-top: 4px;
 }
 
-/* Game css */
-#gamegrid {
-    width: 700px;
-    margin-right: 20px;
-    margin-bottom: 20px;
-    float: left;
-    background-color: #2973C8;
-}
-
-#gamegrid .over,
-#gamegrid .block {
-    position: absolute;
-    width: 700px;
-    height: 575px;
-    display: none;
-}
-
-#gamegrid .block {
-    background-color: #FFFFFF;
-    opacity: 0.75;
-}
-
-#gamegrid .over h1 {
-    font-size: 80px;
-    color: #FFFFFF;
-    margin-top: 230px;
-    margin-left: 70px;
-    
-    -webkit-text-shadow: 0px 0px 25px #E3001B;
-    -moz-text-shadow: 0px 0px 25px #E3001B;
-    -o-text-shadow: 0px 0px 25px #E3001B;
-    text-shadow: 0px 0px 25px #E3001B;
-}
-
-#gamegrid .row {
-    float: left;
-}
-
-.hasturn .row {
-    cursor: pointer;
-}
-
-#gamegrid .row .field {
-    width: 88px;
-    height: 88px;
-    margin: 5px;
-    border: 1px solid #2973C8;
-    
-    -webkit-border-radius: 44px;
-    -moz-border-radius: 44px;
-    -o-border-radius: 44px;
-    border-radius: 44px;
-}
-
-#gameinfo {
-    width: 250px;
-    height: 575px;
-    background-color: #2973C8;
-    float: left;
-}
-
-#gameinfo .infBox {
-    margin: 0px 20px;
-    padding: 0px 10px 5px 10px;
-    background-color: #FFFFFF;
-    
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    -o-border-radius: 5px;
-    border-radius: 5px;
-}
-
-.addpoints {
-    color: green;
-}
-
-/*
-11 #4A874B
-12 #825BA4
-21 #EB9B0F
-22 #000000
-*/
-.theme0 .coin0,
-.theme1 .coin0,
-.theme2 .coin0 {
-    background-color: #FFFFFF;
-}
-.theme0 .coin1 {
-    background-color: #F22F29;
-}
-.theme1 .coin1 {
-    background-color: #5CBC5E;
-}
-.theme2 .coin1 {
-    background-color: #EB9B0F;
-}
-.theme0 .coin2 {
-    background-color: #F7F224;
-}
-.theme1 .coin2 {
-    background-color: #A87ECE;
-}
-.theme2 .coin2 {
-    background-color: #000000;
-}
-.theme0 #infPlayer1 .hasturn{
-    -webkit-box-shadow: 0px 0px 10px 5px #F22F29, 0px 10px 10px 0px #F22F29;
-    -moz-box-shadow: 0px 0px 10px 5px #F22F29, 0px 10px 10px 0px #F22F29;
-    -o-box-shadow: 0px 0px 10px 5px #F22F29, 0px 10px 10px 0px #F22F29;
-    box-shadow: 0px 0px 10px 5px #F22F29, 0px 10px 10px 0px #F22F29;
-}
-.theme1 #infPlayer1 .hasturn{
-    -webkit-box-shadow: 0px 0px 10px 5px #5CBC5E, 0px 10px 10px 0px #5CBC5E;
-    -moz-box-shadow: 0px 0px 10px 5px #5CBC5E, 0px 10px 10px 0px #5CBC5E;
-    -o-box-shadow: 0px 0px 10px 5px #5CBC5E, 0px 10px 10px 0px #5CBC5E;
-    box-shadow: 0px 0px 10px 5px #5CBC5E, 0px 10px 10px 0px #5CBC5E;
-}
-.theme2 #infPlayer1 .hasturn {
-    -webkit-box-shadow: 0px 0px 10px 5px #EB9B0F, 0px 10px 10px 0px #EB9B0F;
-    -moz-box-shadow: 0px 0px 10px 5px #EB9B0F, 0px 10px 10px 0px #EB9B0F;
-    -o-box-shadow: 0px 0px 10px 5px #EB9B0F, 0px 10px 10px 0px #EB9B0F;
-    box-shadow: 0px 0px 10px 5px #EB9B0F, 0px 10px 10px 0px #EB9B0F;
-}
-.theme0 #infPlayer2 .hasturn {
-    -webkit-box-shadow: 0px 0px 10px 5px #F7F224, 0px 10px 10px 0px #F7F224;
-    -moz-box-shadow: 0px 0px 10px 5px #F7F224, 0px 10px 10px 0px #F7F224;
-    -o-box-shadow: 0px 0px 10px 5px #F7F224, 0px 10px 10px 0px #F7F224;
-    box-shadow: 0px 0px 10px 5px #F7F224, 0px 10px 10px 0px #F7F224;
-}
-.theme1 #infPlayer2 .hasturn {
-    -webkit-box-shadow: 0px 0px 10px 5px #A87ECE, 0px 10px 10px 0px #A87ECE;
-    -moz-box-shadow: 0px 0px 10px 5px #A87ECE, 0px 10px 10px 0px #A87ECE;
-    -o-box-shadow: 0px 0px 10px 5px #A87ECE, 0px 10px 10px 0px #A87ECE;
-    box-shadow: 0px 0px 10px 5px #A87ECE, 0px 10px 10px 0px #A87ECE;
-}
-.theme2 #infPlayer2 .hasturn {
-    -webkit-box-shadow: 0px 0px 10px 5px #000000, 0px 10px 10px 0px #000000;
-    -moz-box-shadow: 0px 0px 10px 5px #000000, 0px 10px 10px 0px #000000;
-    -o-box-shadow: 0px 0px 10px 5px #000000, 0px 10px 10px 0px #000000;
-    box-shadow: 0px 0px 10px 5px #000000, 0px 10px 10px 0px #000000;
+th {
+    vertical-align: top;
 }

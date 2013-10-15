@@ -32,5 +32,16 @@
             <h1>Footer</h1>
         </footer>
 
+        <script type="text/javascript">
+            $(document).ready(function(){
+                $("input[type='submit'], button").button();
+                $("div.sub").on("mouseenter", function(){
+                    $(this).children("nav").show();
+                }).on("mouseleave", function(){
+                    $(this).children("nav").hide();
+                });
+            });
+        </script>
+
     </body>
 </html>

@@ -4,6 +4,9 @@
         #IF:is_array($this->_objResponse->arrQuestions)#
         <form id="action"></form>
         <table class="ui-widget ui-widget-content">
+            <p> 
+                <button class="btnNew" name="uid" value="#VAR:UID#" type="submit" form="action" formaction="#ROOT#/Fragen/Neu" formmethod="post">Neu</button>&nbsp;
+            </p>      
             <thead>
                 <tr class="ui-widget-header">
                     <th>#ID</th>
@@ -42,6 +45,13 @@
                 $(".btnDelete").button({
                     icons: {
                         primary: "ui-icon-trash"
+                    },
+                    text: false
+                });
+                
+                $(".btnNew").button({
+                    icons: {
+                        primary: "ui-icon-plusthick"
                     },
                     text: false
                 });

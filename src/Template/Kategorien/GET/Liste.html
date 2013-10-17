@@ -4,6 +4,9 @@
         #IF:is_array($this->_objResponse->arrCategories)#
         <form id="action"></form>
        <table class="ui-widget ui-widget-content">
+            <p> 
+                <button class="btnNew" name="uid" value="#VAR:UID#" type="submit" form="action" formaction="#ROOT#/Kategorien/Neu" formmethod="post">Neu</button>&nbsp;
+            </p>
             <thead>
                 <tr class="ui-widget-header">
                     <th>#ID</th>
@@ -15,7 +18,7 @@
                 #FOREACH:arrCategories#
                 <tr>
                     <td>#VAR:UID#</td>
-                    <td>#VAR:strCategory#</td>
+                    <td>#VAR:strName#</td>
                     <td>
                         <button class="btnEdit" name="uid" value="#VAR:UID#" type="submit" form="action" formaction="#ROOT#/Kategorien/Bearbeiten" formmethod="get">Bearbeiten</button>&nbsp;
                         <button class="btnDelete" name="uid" value="#VAR:UID#" type="submit" form="action" formaction="#ROOT#/Kategorien/Löschen" formmethod="get">Löschen</button>
@@ -43,6 +46,13 @@
                 $(".btnDelete").button({
                     icons: {
                         primary: "ui-icon-trash"
+                    },
+                    text: false
+                });
+                
+                $(".btnNew").button({
+                    icons: {
+                        primary: "ui-icon-plusthick"
                     },
                     text: false
                 });

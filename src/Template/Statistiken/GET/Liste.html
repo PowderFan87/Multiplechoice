@@ -1,0 +1,27 @@
+
+        <h1>Liste der Statistiken</h1>
+
+        #IF:is_array($this->_objResponse->arrSessions)#
+        <table class="ui-widget ui-widget-content">
+            <thead>
+                <tr class="ui-widget-header">
+                    <th>#ID</th>
+                    <th>Startdatum</th>
+                    <th>Punktzahl</th>
+                </tr>
+            </thead>
+            <tbody id="lisGame">
+                #FOREACH:arrSessions#
+                <tr>
+                    <td>#VAR:UID#</td>
+                    <td>#VAR:dtmStart#</td>
+                    <td>#VAR:lngPoints#</td>
+                </tr>
+                #/FOREACH#
+            </tbody>
+        </table>
+        #/IF#
+
+        #IF:!is_array($this->_objResponse->arrSessions)#
+        <h3>Keine Statistiken vorhanden!</h3>
+        #/IF#

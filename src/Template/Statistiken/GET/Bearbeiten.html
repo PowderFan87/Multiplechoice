@@ -1,0 +1,26 @@
+
+<h1>Statistiken reseten</h1>
+
+        <form method="post">
+            <input type="hidden" name="UID" value="#VAR:UID#" />
+
+            <table style="float: left;">
+                <tr>
+                    <th><label for="dtmStart" class="#VAR:ERROR_dtmStart#">Startdatum</label></th>
+                    <td><input type="text" id="strName" name="dtmStart" value="#VAR:dtmStart#" class="text ui-widget-content ui-corner-all" /></td>
+                </tr>
+                <tr>
+                    <th><label for="lngPoints" class="#VAR:ERROR_lngTime#">Punktzahl</label></th>
+                    <td>
+                        <input id="lngPoints" name="lngPoints" value="#VAR:lngPoints#" class="text ui-widget-content ui-corner-all" />
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <input type="submit" value="Reseten" />
+                    </td>
+                </tr>
+            </table>
+            <br clear="all" />&nbsp;<br />
+        </form>
+</body>

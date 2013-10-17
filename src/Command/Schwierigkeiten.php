@@ -14,7 +14,7 @@ class Command_Schwierigkeiten extends Core_Base_Command implements IHttpRequest
     public function getDetails() {
         $this->_objResponse->tplContent = 'Schwierigkeiten_GET_Details';
 
-        $objCDifficulty = viewDifficulty::getBypk($this->_objRequest->UID);
+        $objDifficulty = viewDifficulty::getBypk($this->_objRequest->UID);
 
         $this->_fillTemplate($objDifficulty);
     }

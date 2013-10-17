@@ -10,7 +10,7 @@ class Command_Main extends Core_Base_Command implements IHttpRequest
 
         $this->_objResponse->strTitle       .= ' - Home';
         $this->_objResponse->strWellcome    = 'Willkommen im Verwaltungstool der Multiple Choice-Prüfungssoftware';
-
+/*
         $objQuestion = viewQuestion::getBypk(1);
         $this->_objResponse->strQuestion = $objQuestion->getstrQuestion();
 
@@ -25,7 +25,7 @@ class Command_Main extends Core_Base_Command implements IHttpRequest
         
         $objQuestion = viewDifficulty::getBypk(1);
         $this->_objResponse->strDifficulty = $objQuestion->getstrDifficulty();
-        
+       */ 
 //        $objQuestion->setstrQuestion('Ja das war ne Frage?');
 //        $objQuestion->doFullupdate();
 //

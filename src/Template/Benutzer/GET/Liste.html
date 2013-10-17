@@ -2,6 +2,7 @@
         <h1>Liste der Benutzer</h1>
 
         #IF:is_array($this->_objResponse->arrBackendusers)#
+        <form id="action"></form>
         <table class="ui-widget ui-widget-content">
             <thead>
                 <tr class="ui-widget-header">
@@ -15,6 +16,10 @@
                 <tr>
                     <td>#VAR:UID#</td>
                     <td>#VAR:strName#</td>
+                    <td>
+                        <button class="btnEdit" name="uid" value="#VAR:UID#" type="submit" form="action" formaction="#ROOT#/Benutzer/Bearbeiten" formmethod="get">Bearbeiten</button>&nbsp;
+                        <button class="btnDelete" name="uid" value="#VAR:UID#" type="submit" form="action" formaction="#ROOT#/Benutzer/Löschen" formmethod="get">Löschen</button>
+                    </td>
                 </tr>
                 #/FOREACH#
             </tbody>
@@ -24,3 +29,21 @@
         #IF:!is_array($this->_objResponse->arrBackendusers)#
         <h3>Keine Benutzer vorhanden!</h3>
         #/IF#
+        
+        <script type="text/javascript">
+            $(document).ready(function(){
+                $(".btnEdit").button({
+                    icons: {
+                        primary: "ui-icon-pencil"
+                    },
+                    text: false
+                });
+
+                $(".btnDelete").button({
+                    icons: {
+                        primary: "ui-icon-trash"
+                    },
+                    text: false
+                });
+            });
+        </script>

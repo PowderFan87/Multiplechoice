@@ -2,7 +2,8 @@
         <h1>Liste der Kategorien</h1>
 
         #IF:is_array($this->_objResponse->arrCategories)#
-        <table class="ui-widget ui-widget-content">
+        <form id="action"></form>
+       <table class="ui-widget ui-widget-content">
             <thead>
                 <tr class="ui-widget-header">
                     <th>#ID</th>
@@ -16,7 +17,9 @@
                     <td>#VAR:UID#</td>
                     <td>#VAR:strCategory#</td>
                     <td>
-
+                        <button class="btnEdit" name="uid" value="#VAR:UID#" type="submit" form="action" formaction="#ROOT#/Kategorien/Bearbeiten" formmethod="get">Bearbeiten</button>&nbsp;
+                        <button class="btnDelete" name="uid" value="#VAR:UID#" type="submit" form="action" formaction="#ROOT#/Kategorien/Löschen" formmethod="get">Löschen</button>
+                  
                     </td>
                 </tr>
                 #/FOREACH#
@@ -27,3 +30,21 @@
         #IF:!is_array($this->_objResponse->arrCategories)#
         <h3>Keine Kategorien vorhanden!</h3>
         #/IF#
+        
+        <script type="text/javascript">
+            $(document).ready(function(){
+                $(".btnEdit").button({
+                    icons: {
+                        primary: "ui-icon-pencil"
+                    },
+                    text: false
+                });
+
+                $(".btnDelete").button({
+                    icons: {
+                        primary: "ui-icon-trash"
+                    },
+                    text: false
+                });
+            });
+        </script>

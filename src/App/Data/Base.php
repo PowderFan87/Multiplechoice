@@ -5,6 +5,7 @@ abstract class App_Data_Base
     const   VIEW_PK    = 'UID';
 
     protected $_arrData;
+    protected $_lngUID;
     protected $_blnAltered = false;
     protected $_blnUpdated = false;
 
@@ -48,6 +49,8 @@ abstract class App_Data_Base
 
                 if(array_key_exists($strAttrname, $this->_arrData)) {
                     return $this->_arrData[$strAttrname];
+                } else if($strAttrname == self::VIEW_PK) {
+                    return $this->_lngUID;
                 }
 
                 break;
@@ -56,7 +59,7 @@ abstract class App_Data_Base
                 $strAttrname = str_replace('set', '', $strName);
 
                 if($strAttrname == self::VIEW_PK) {
-                    return false;
+                    $this->_lngUID = $arrArguments[0];
                 }
 
                 if(array_key_exists($strAttrname, $this->_arrData)) {
@@ -107,12 +110,16 @@ abstract class App_Data_Base
         $strClass   = get_called_class();
         $strTable   = $strClass::VIEW_CLASS;
 
-        if($strTable::doInsert($this)) {
-            $this->_blnUpdated = true;
-            $this->_blnAltered = false;
-        } else {
+        $lngUID     = $strTable::doInsert($this);
+
+        if($lngUID === false) {
             $this->_blnUpdated = false;
             $this->_blnAltered = true;
+        } else {
+            $this->_blnUpdated = true;
+            $this->_blnAltered = false;
+
+            $this->setUID($lngUID);
         }
 
         return $this->_blnUpdated;

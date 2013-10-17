@@ -39,7 +39,7 @@ class Resource_DB_MySQL implements IResource
         if (mysql_query($strQuery, $this->_resDb)) {
             return true;
         } else {
-            throw new Resource_Exception('MySQL Query execute error: ' . mysql_error() . ' with SQL: $strQuery');
+            throw new Resource_Exception('MySQL Query execute error: ' . mysql_error() . ' with SQL: ' . $strQuery);
         }
     }
 
@@ -159,7 +159,13 @@ class Resource_DB_MySQL implements IResource
             }
         }
 
-        return $this->exec(sprintf($strSql, implode(', ', $arrValues)));
+        if($this->exec(sprintf($strSql, implode(', ', $arrValues)))) {
+            $arrValues = $this->readSingle('SELECT LAST_INSERT_ID() as UID;');
+
+            return $arrValues['UID'];
+        }
+
+        return false;
     }
 
     /**

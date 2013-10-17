@@ -16,13 +16,26 @@ class App_Data_Question extends App_Data_Base
         $this->_arrDependencies[] = $objAnswer;
     }
 
+    public function addCategory($lngCategoryid) {
+        $arrData = array(
+            'tblquestion_UID' => $this->getUID(),
+            'tblcategory_UID' => $lngCategoryid
+        );
+
+        App_Factory_Resource::getResource()->insert($arrData, 'tblquestion_has_tblcategory');
+    }
+
     public function doFullupdate($blnDependencies = false) {
         if($blnDependencies) {
             foreach($this->_arrDependencies as $objDependence) {
-                $objDependence->doFullupdate();
+                if(!$objDependence->getUID()) {
+                    $objDependence->doInsert();
+                } else {
+                    $objDependence->doFullupdate();
+                }
             }
         }
-        
+
         parent::doFullupdate();
     }
 

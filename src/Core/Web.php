@@ -37,7 +37,7 @@ class Core_Web
             try {
                 $objPrehook->runPre();
             } catch(App_Hook_Security_Exception $e) {
-                
+
             }
         }
 

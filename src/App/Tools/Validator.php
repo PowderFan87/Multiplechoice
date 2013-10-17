@@ -78,4 +78,28 @@ class App_Tools_Validator
     public static function isLarger($lngValue, $lngMin) {
         return ($lngValue > $lngMin);
     }
+
+    public static function hasEnoughanswers($arrAnswers) {
+        foreach($arrAnswers as $lngKey => $arrAnswer) {
+            if($arrAnswer['text'] == '') {
+                unset($arrAnswers[$lngKey]);
+            }
+        }
+
+        return (count($arrAnswers) >= 4);
+    }
+
+    public static function hasOnerightanswer($arrAnswers) {
+        foreach($arrAnswers as $arrAnswer) {
+            if($arrAnswer['text'] == '') {
+                continue;
+            }
+
+            if(isset($arrAnswer['true']) && $arrAnswer['true'] == 'checked') {
+                return true;
+            }
+        }
+
+        return false;
+    }
 }

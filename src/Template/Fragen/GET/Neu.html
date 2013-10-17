@@ -1,8 +1,7 @@
-<head>
     <script>
   $(function() {
     var spinner = $( "#lngOpttime" ).spinner();
- 
+
     $( "#disable" ).click(function() {
       if ( spinner.spinner( "option", "disabled" ) ) {
         spinner.spinner( "enable" );
@@ -23,13 +22,11 @@
     $( "#setvalue" ).click(function() {
       spinner.spinner( "value", 5 );
     });
- 
+
     $( "button" ).button();
   });
   </script>
-</head>
 
-<body>
         <h1>Neue Frage</h1>
 
         <form method="post">
@@ -43,9 +40,9 @@
                 <tr>
                     <th><label for="category">Kategorie</label></th>
                     <td>
-                        <select id="category" name="category" multiple="multiple" size="3" class="text ui-widget-content ui-corner-all">
+                        <select id="category" name="category[]" multiple="multiple" size="6" class="text ui-widget-content ui-corner-all">
                             <option value="-">--- Auswahl ---</option>
-                            #TPL:tplCategoryselection#
+                            #VAR:txtCategories#
                         </select>
                     </td>
                 </tr>
@@ -71,8 +68,8 @@
             <table style="float: left; margin-left: 50px;">
                 <thead>
                     <tr>
-                        <th>Antwort:</th>
-                        <th>Richtig?</th>
+                        <th class="#VAR:ERROR_antwort#">Antwort:</th>
+                        <th class="#VAR:ERROR_antwort#">Richtig?</th>
                     </tr>
                 </thead>
                 <tbody id="answerlist">
@@ -176,4 +173,3 @@
                 });
             });
         </script>
-</body>

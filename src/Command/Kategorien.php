@@ -4,7 +4,7 @@ class Command_Kategorien extends Core_Base_Command implements IHttpRequest
     public function getMain() {
         $this->getListe();
     }
-    
+
     public function getListe() {
         $this->_objResponse->tplContent = 'Kategorien_GET_Liste';
 
@@ -21,6 +21,28 @@ class Command_Kategorien extends Core_Base_Command implements IHttpRequest
 
     public function getNeu() {
         $this->_objResponse->tplContent = 'Kategorien_GET_Neu';
+
+        $arrCategories  = viewCategory::getAlltopcategories(false);
+        $txtCategories  = '';
+        $arrSubs        = array();
+
+        foreach($arrCategories as $arrCategory) {
+            $arrSubs = viewCategory::getAllsubcategoriesbyparentid($arrCategory['UID'], false);
+
+            if($arrSubs === NULL) {
+                $txtCategories .= '<option value="' . $arrCategory['UID'] . '">' . $arrCategory['strName'] . '</option>';
+            } else {
+                $txtCategories .= '<optgroup label="' . $arrCategory['strName'] . '">';
+
+                foreach($arrSubs as $arrSub) {
+                    $txtCategories .= '<option value="' . $arrSub['UID'] . '">' . $arrSub['strName'] . '</option>';
+                }
+
+                $txtCategories .= '</optgroup>';
+            }
+        }
+
+        $this->_objResponse->txtCategories      = $txtCategories;
     }
 
     public function getBearbeiten() {
@@ -46,7 +68,7 @@ class Command_Kategorien extends Core_Base_Command implements IHttpRequest
 
         $this->_objResponse->arrCategories = $objCategory->getAllcategories();
     }
-    
+
     protected function _doInit() {
 
     }

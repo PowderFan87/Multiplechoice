@@ -6,7 +6,7 @@ class App_Data_Backenduser extends App_Data_Base
 
     protected function _getEmpryarray() {
         return array(
-            'strName'           => ''
+            'strName'   => ''
         );
     }
 }

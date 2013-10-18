@@ -3,8 +3,8 @@
 
         #IF:is_array($this->_objResponse->arrCategories)#
         <form id="action"></form>
-       <table class="ui-widget ui-widget-content">
-            <p> 
+        <table class="ui-widget ui-widget-content">
+            <p>
                 <button class="btnNew" name="uid" value="#VAR:UID#" type="submit" form="action" formaction="#ROOT#/Kategorien/Neu" formmethod="post">Neu</button>&nbsp;
             </p>
             <thead>
@@ -22,7 +22,6 @@
                     <td>
                         <button class="btnEdit" name="uid" value="#VAR:UID#" type="submit" form="action" formaction="#ROOT#/Kategorien/Bearbeiten" formmethod="get">Bearbeiten</button>&nbsp;
                         <button class="btnDelete" name="uid" value="#VAR:UID#" type="submit" form="action" formaction="#ROOT#/Kategorien/Löschen" formmethod="get">Löschen</button>
-                  
                     </td>
                 </tr>
                 #/FOREACH#
@@ -33,7 +32,7 @@
         #IF:!is_array($this->_objResponse->arrCategories)#
         <h3>Keine Kategorien vorhanden!</h3>
         #/IF#
-        
+
         <script type="text/javascript">
             $(document).ready(function(){
                 $(".btnEdit").button({
@@ -49,7 +48,7 @@
                     },
                     text: false
                 });
-                
+
                 $(".btnNew").button({
                     icons: {
                         primary: "ui-icon-plusthick"

@@ -30,6 +30,8 @@
         <h1>Neue Frage</h1>
 
         <form method="post">
+            <input type="hidden" name="UID" value="#VAR:UID#" />
+
             <table style="float: left;">
                 <tr>
                     <th><label for="strQuestion" class="#VAR:ERROR_strQuestion#">Frage</label></th>
@@ -73,45 +75,6 @@
                     </tr>
                 </thead>
                 <tbody id="answerlist">
-                    #IF:$this->_objResponse->executed!==true#
-                    <tr>
-                        <td>
-                            <input type="hidden" name="antwort[0][UID]" value="0" />
-                            <input type="text" name="antwort[0][strAnswer]" class="text ui-widget-content ui-corner-all" />
-                        </td>
-                        <td>
-                            <input type="checkbox" name="antwort[0][blnTrue]" value="checked" class="text ui-widget-content ui-corner-all" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <input type="hidden" name="antwort[1][UID]" value="1" />
-                            <input type="text" name="antwort[1][strAnswer]" class="text ui-widget-content ui-corner-all" />
-                        </td>
-                        <td>
-                            <input type="checkbox" name="antwort[1][blnTrue]" value="checked" class="text ui-widget-content ui-corner-all" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <input type="hidden" name="antwort[2][UID]" value="2" />
-                            <input type="text" name="antwort[2][strAnswer]" class="text ui-widget-content ui-corner-all" />
-                        </td>
-                        <td>
-                            <input type="checkbox" name="antwort[2][blnTrue]" value="checked" class="text ui-widget-content ui-corner-all" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <input type="hidden" name="antwort[3][UID]" value="3" />
-                            <input type="text" name="antwort[3][strAnswer]" class="text ui-widget-content ui-corner-all" />
-                        </td>
-                        <td>
-                            <input type="checkbox" name="antwort[3][blnTrue]" value="checked" class="text ui-widget-content ui-corner-all" />
-                        </td>
-                    </tr>
-                    #/IF#
-                    #IF:$this->_objResponse->executed===true#
                     #FOREACH:antwort#
                     <tr>
                         <td>
@@ -123,7 +86,6 @@
                         </td>
                     </tr>
                     #/FOREACH#
-                    #/IF#
                 </tbody>
                 <tfoot>
                     <tr>
@@ -139,13 +101,7 @@
         </form>
 
         <script type="text/javascript">
-            #IF:$this->_objResponse->executed!==true#
-            ac = 3;
-            #/IF#
-
-            #IF:$this->_objResponse->executed===true#
             ac = #VAR:antwortcount#;
-            #/IF#
 
             $(document).ready(function(){
                 $("#addAnswer").button({
@@ -156,7 +112,7 @@
                 }).click(function(e){
                     e.preventDefault();
                     ac++;
-                    r='<tr><td><input type="hidden" name="antwort['+ac+'][UID]" value="'+ac+'" /><input type="text" name="antwort['+ac+'][strAnswer]" class="text ui-widget-content ui-corner-all" /></td><td><input type="checkbox" name="antwort['+ac+'][blnTrue]" value="checked" class="text ui-widget-content ui-corner-all" /></td></tr>'
+                    r='<tr><td><input type="hidden" name="antwort[n'+ac+'][UID]" value="n'+ac+'" /><input type="text" name="antwort[n'+ac+'][strAnswer]" class="text ui-widget-content ui-corner-all" /></td><td><input type="checkbox" name="antwort[n'+ac+'][blnTrue]" value="checked" class="text ui-widget-content ui-corner-all" /></td></tr>'
                     $("#answerlist").append(r);
                 });
 

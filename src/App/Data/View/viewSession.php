@@ -9,9 +9,11 @@ class viewSession extends App_Data_View_Base
         $strARClass = 'App_Data_' . self::VIEW_ARCLASS;
         $strQuery   = '
 SELECT
-    *
+    tblcategory.strName, tblsessions.lngPoints
 FROM
-    ' . self::VIEW_NAME;
+    ' . self::VIEW_NAME . ', tblcategory
+WHERE 
+    tblsessions.tblcategory_UID = tblcategory.UID';
 
         try {
             $arrData        = App_Factory_Resource::getResource()->read($strQuery, true);

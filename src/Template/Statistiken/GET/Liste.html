@@ -1,11 +1,28 @@
 
         <h1>Liste der Statistiken</h1>
 
+        <script type="text/javascript">
+            var kategorie[];
+            var punkte[];
+            kategorien[0] = ['Kategorie'];
+            punkte[0] = ['Punkte'];
+            var i = 0;
+            
+            document.write(kategorien[0]);
+      
+  }
+  
+    
+        </script>
+     
+        
+      <a href="javascript:alert()">Unsere Erfolge</a>
+      
         #IF:is_array($this->_objResponse->arrSessions)#
          <form id="action"></form>
        <table class="ui-widget ui-widget-content">
             <thead>
-                <tr class="ui-widget-header">
+                <tr class="ui-widget-header">e
                     <th>#ID</th>
                     <th>Startdatum</th>
                     <th>Punktzahl</th>
@@ -14,19 +31,34 @@
             </thead>
             <tbody id="lisGame">
                 #FOREACH:arrSessions#
+                
+                <script type="text/javascript">
+                    i++;
+                    kategorien[i] = #VAR:strName#;
+                    punkte[i] = #VAR:lngPoints#;
+                </script>
+                
                 <tr>
                     <td>#VAR:UID#</td>
                     <td>#VAR:dtmStart#</td>
                     <td>#VAR:lngPoints#</td>
+                    <td>#VAR:strName#</td>
                     <td>
-                        <!--
-                        <button class="btnEdit" name="uid" value="#VAR:UID#" type="submit" form="action" formaction="#ROOT#/Statistiken/Bearbeiten" formmethod="get">Bearbeiten</button>&nbsp;
-                        -->
                         <button class="btnDelete" name="uid" value="#VAR:UID#" type="submit" form="action" formaction="#ROOT#/Statistiken/Löschen" formmethod="get">Löschen</button>
                     </td>
                 </tr>
                 #/FOREACH#
             </tbody>
+        </table>
+        
+        <table>
+           <tr>
+                    <td>#VAR:kategorien[1]#</td>
+                    <td>#VAR:punkte[1]#</td>
+                    <td>
+                        <button class="btnDelete" name="uid" value="#VAR:UID#" type="submit" form="action" formaction="#ROOT#/Statistiken/Löschen" formmethod="get">Löschen</button>
+                    </td>
+                </tr>
         </table>
         #/IF#
 
@@ -36,18 +68,39 @@
         
         <script type="text/javascript">
             $(document).ready(function(){
-                $(".btnEdit").button({
-                    icons: {
-                        primary: "ui-icon-pencil"
+                $(".    icons: {
+                        primary: "ui-icon-trash"
                     },
                     text: false
-                });
-
-                $(".btnDelete").button({
+                });btnDelete").button({
                     icons: {
                         primary: "ui-icon-trash"
                     },
                     text: false
                 });
             });
+            
+      alert("Test");      
+      alert(kategorien[0]);
+      alert(kategorien[1]);
         </script>
+        
+    <script type="text/javascript" src="//www.google.com/jsapi"></script>
+    <script type="text/javascript">
+      google.load('visualization', '1', {packages: ['corechart']});
+    </script>
+    <script type="text/javascript">
+      function drawVisualization() {
+        var data = google.visualization.arrayToDataTable([
+          ['Aufgabe', 'Stunden pro Tag'],
+          [kategorien[1], punkte[1]],
+          [kategorien[2], punkte[2]],
+        ]);
+        
+        new google.visualization.PieChart(document.getElementById('visualization')).
+            draw(data, {title:"So, how was your day?"});
+      }
+      
+        google.setOnLoadCallback(drawVisualization);
+    </script>
+    <div id="visualization" style="width: 600px; height: 400px;"></div>

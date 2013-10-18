@@ -21,38 +21,22 @@ class Command_Fragen extends Core_Base_Command implements IHttpRequest
 
     public function getNeu() {
         $this->_objResponse->tplContent             = 'Fragen_GET_Neu';
-        $this->_objResponse->tplDifficultyselection = 'Widget_difficultyselection';
 
-        $arrCategories  = viewCategory::getAlltopcategories(false);
-        $txtCategories  = '';
-        $arrSubs        = array();
-
-        foreach($arrCategories as $arrCategory) {
-            $arrSubs = viewCategory::getAllsubcategoriesbyparentid($arrCategory['UID'], false);
-
-            if($arrSubs === NULL) {
-                $txtCategories .= '<option value="' . $arrCategory['UID'] . '">' . $arrCategory['strName'] . '</option>';
-            } else {
-                $txtCategories .= '<optgroup label="' . $arrCategory['strName'] . '">';
-
-                foreach($arrSubs as $arrSub) {
-                    $txtCategories .= '<option value="' . $arrSub['UID'] . '">' . $arrSub['strName'] . '</option>';
-                }
-
-                $txtCategories .= '</optgroup>';
-            }
-        }
-
-        $this->_objResponse->txtCategories      = $txtCategories;
-        $this->_objResponse->arrDifficulties    = viewDifficulty::getAlldifficulties(false);
+        $this->_buildCategoryselect();
+        $this->_buildDifficultyselect();
     }
 
     public function getBearbeiten() {
         $this->_objResponse->tplContent = 'Fragen_GET_Bearbeiten';
 
-        $objQuestion = viewQuestion::getBypk($this->_objRequest->UID);
+        $objQuestion = viewQuestion::getBypk($this->_objRequest->uid);
 
         $this->_fillTemplate($objQuestion);
+
+        $this->_buildCategoryselect($objQuestion->getCategorymap());
+        $this->_buildDifficultyselect($objQuestion->gettbldifficulty_UID());
+
+        $this->_objResponse->antwortcount   = count($this->_objResponse->antwort)-1;
     }
 
     public function postNeu() {
@@ -62,7 +46,6 @@ class Command_Fragen extends Core_Base_Command implements IHttpRequest
 
         if(!empty($arrErrors)) {
             $this->_objResponse->tplContent             = 'Fragen_GET_Neu';
-            $this->_objResponse->tplDifficultyselection = 'Widget_difficultyselection';
 
             $this->_objResponse->executed = true;
 
@@ -81,45 +64,16 @@ class Command_Fragen extends Core_Base_Command implements IHttpRequest
             $this->_objResponse->strQuestion    = $this->_objRequest->strQuestion;
             $this->_objResponse->lngOpttime     = $this->_objRequest->lngOpttime;
 
-            $arrCategories  = viewCategory::getAlltopcategories(false);
-            $txtCategories  = '';
-            $arrSubs        = array();
-
-            foreach($arrCategories as $arrCategory) {
-                $strSelected    = '';
-                $arrSubs        = viewCategory::getAllsubcategoriesbyparentid($arrCategory['UID'], false);
-
-                if($arrSubs === NULL) {
-                    if(in_array($arrCategory['UID'], $this->_objRequest->category)) {
-                        $strSelected = ' selected="selected"';
-                    }
-                    $txtCategories .= '<option' . $strSelected . ' value="' . $arrCategory['UID'] . '">' . $arrCategory['strName'] . '</option>';
-                } else {
-                    $txtCategories .= '<optgroup label="' . $arrCategory['strName'] . '">';
-
-                    foreach($arrSubs as $arrSub) {
-                        if(in_array($arrSub['UID'], $this->_objRequest->category)) {
-                            $strSelected = ' selected="selected"';
-                        } else {
-                            $strSelected = '';
-                        }
-                        $txtCategories .= '<option' . $strSelected . ' value="' . $arrSub['UID'] . '">' . $arrSub['strName'] . '</option>';
-                    }
-
-                    $txtCategories .= '</optgroup>';
-                }
-            }
-
-            $this->_objResponse->txtCategories      = $txtCategories;
-            $this->_objResponse->arrDifficulties    = viewDifficulty::getAlldifficulties(false);
+            $this->_buildCategoryselect();
+            $this->_buildDifficultyselect();
         } else {
             $objQuestion = new App_Data_Question();
 
             $objQuestion->setstrQuestion($this->_objRequest->strQuestion);
-            $objQuestion->setlngOpttie($this->_objRequest->lngOpttime);
+            $objQuestion->setlngOpttime($this->_objRequest->lngOpttime);
+            $objQuestion->settbldifficulty_UID($this->_objRequest->difficulty);
 
             //STATIC PART!!!
-            $objQuestion->settbldifficulty_UID($this->_objRequest->difficulty);
             $objQuestion->settblbackenduser_UID(1);
             //CHANGE!!!
 
@@ -127,14 +81,14 @@ class Command_Fragen extends Core_Base_Command implements IHttpRequest
                 //@TODO ERROR
             } else {
                 foreach($this->_objRequest->antwort as $arrAnswer) {
-                    if($arrAnswer['text'] == '') {
+                    if($arrAnswer['strAnswer'] == '') {
                         continue;
                     }
 
                     $objAnswer = new App_Data_Answer();
 
-                    $objAnswer->setstrAnswer($arrAnswer['text']);
-                    $objAnswer->setblnTrue((isset($arrAnswer['true']))?1:0);
+                    $objAnswer->setstrAnswer($arrAnswer['strAnswer']);
+                    $objAnswer->setblnTrue((isset($arrAnswer['blnTrue']))?1:0);
 
                     $objQuestion->addAnswer($objAnswer);
                 }
@@ -152,21 +106,155 @@ class Command_Fragen extends Core_Base_Command implements IHttpRequest
         $this->_objResponse->tplContent = 'Fragen_POST_Bearbeiten';
 
         $objQuestion = viewQuestion::getBypk($this->_objRequest->UID);
-    }
 
-    private function _fillTemplate(App_Data_Question $objQuestion) {
+        $arrErrors  = $this->_doValidate();
 
-        $this->_objResponse->UID            = $objQuestion->getUID();
-        $this->_objResponse->strQuestion    = $objQuestion->getstrQuestion();
-        $this->_objResponse->lngOpttime     = $objQuestion->getlngOpttime();
+        if(!empty($arrErrors)) {
+            $this->_objResponse->tplContent = 'Fragen_GET_Bearbeiten';
 
-        //@TODO set values for diff, and category
+            foreach($arrErrors as $strField => $blnError) {
+                if(!$blnError) {
+                    continue;
+                }
 
-        $this->_objResponse->arrQuestions = $objQuestion->getAllquestions();
+                $strErrorvariable = 'ERROR_' . $strField;
+
+                $this->_objResponse->$strErrorvariable = 'error';
+            }
+
+            $this->_objResponse->UID            = $objQuestion->getUID();
+            $this->_objResponse->antwortcount   = count($this->_objRequest->antwort)-1;
+            $this->_objResponse->antwort        = $this->_objRequest->antwort;
+            $this->_objResponse->strQuestion    = $this->_objRequest->strQuestion;
+            $this->_objResponse->lngOpttime     = $this->_objRequest->lngOpttime;
+
+            $this->_buildCategoryselect();
+            $this->_buildDifficultyselect();
+        } else {
+            $objQuestion->setstrQuestion($this->_objRequest->strQuestion);
+            $objQuestion->setlngOpttime($this->_objRequest->lngOpttime);
+            $objQuestion->settbldifficulty_UID($this->_objRequest->difficulty);
+
+            //STATIC PART!!!
+            $objQuestion->settblbackenduser_UID(1);
+            //CHANGE!!!
+
+            if(!$objQuestion->doFullupdate()) {
+                //@TODO ERROR
+            } else {
+                $arrAnswers = $this->_objRequest->antwort;
+
+                foreach($objQuestion->getAllanswers() as $arrAnswer) {
+                    if(!isset($arrAnswers[$arrAnswer['UID']])) {
+                        viewAnswer::deleteBypk($arrAnswer['UID']);
+                    }
+                }
+
+                foreach($arrAnswers as $arrAnswer) {
+                    if(substr($arrAnswer['UID'], 0, 1) == 'n') {
+                        $objAnswer = new App_Data_Answer();
+                    } else {
+                        $objAnswer = viewAnswer::getBypk($arrAnswer['UID']);
+                    }
+
+                    if($objAnswer instanceof App_Data_Answer) {
+                        $objAnswer->setstrAnswer($arrAnswer['strAnswer']);
+                        $objAnswer->setblnTrue((isset($arrAnswer['blnTrue']))?1:0);
+
+                        $objQuestion->addAnswer($objAnswer);
+                    }
+                }
+
+                $arrCategories = $objQuestion->getCategorymap();
+
+                foreach($arrCategories as $lngCategoryid) {
+                    if(!in_array($lngCategoryid, $this->_objRequest->category)) {
+                        $objQuestion->removeCategory($lngCategoryid);
+                    }
+                }
+
+                foreach($this->_objRequest->category as $lngCategoryid) {
+                    if(!in_array($lngCategoryid, $arrCategories)) {
+                        $objQuestion->addCategory($lngCategoryid);
+                    }
+                }
+
+                $objQuestion->doFullupdate(true);
+            }
+        }
     }
 
     protected function _doInit() {
 
+    }
+
+    private function _fillTemplate(App_Data_Question $objQuestion) {
+        $this->_objResponse->UID            = $objQuestion->getUID();
+        $this->_objResponse->strQuestion    = $objQuestion->getstrQuestion();
+        $this->_objResponse->lngOpttime     = $objQuestion->getlngOpttime();
+        $this->_objResponse->antwort        = $objQuestion->getAllanswers();
+    }
+
+    private function _buildCategoryselect($arrSelected = NULL) {
+        $arrCategories  = viewCategory::getAlltopcategories(false);
+        $txtCategories  = '';
+        $arrSubs        = array();
+
+        if($arrSelected === NULL) {
+            $arrSelected = $this->_objRequest->category;
+        }
+
+        if(!is_array($arrSelected)) {
+            $arrSelected = array();
+        }
+
+        foreach($arrCategories as $arrCategory) {
+            $strSelected    = '';
+            $arrSubs        = viewCategory::getAllsubcategoriesbyparentid($arrCategory['UID'], false);
+
+            if($arrSubs === NULL) {
+                if(in_array($arrCategory['UID'], $arrSelected)) {
+                    $strSelected = ' selected="selected"';
+                }
+                $txtCategories .= '<option' . $strSelected . ' value="' . $arrCategory['UID'] . '">' . $arrCategory['strName'] . '</option>';
+            } else {
+                $txtCategories .= '<optgroup label="' . $arrCategory['strName'] . '">';
+
+                foreach($arrSubs as $arrSub) {
+                    if(in_array($arrSub['UID'], $arrSelected)) {
+                        $strSelected = ' selected="selected"';
+                    } else {
+                        $strSelected = '';
+                    }
+                    $txtCategories .= '<option' . $strSelected . ' value="' . $arrSub['UID'] . '">' . $arrSub['strName'] . '</option>';
+                }
+
+                $txtCategories .= '</optgroup>';
+            }
+        }
+
+        $this->_objResponse->txtCategories      = $txtCategories;
+    }
+
+    private function _buildDifficultyselect($tbldifficulty_UID = NULL) {
+        $arrDifficulties  = viewDifficulty::getAlldifficulties(false);
+        $txtDifficulties  = '';
+
+        if($tbldifficulty_UID === NULL) {
+            $tbldifficulty_UID = $this->_objRequest->difficulty;
+        }
+
+        foreach($arrDifficulties as $arrDifficulty) {
+            $strSelected    = '';
+
+            if($arrDifficulty['UID'] == $tbldifficulty_UID) {
+                $strSelected = ' selected="selected"';
+            }
+
+            $txtDifficulties .= '<option' . $strSelected . ' value="' . $arrDifficulty['UID'] . '">' . $arrDifficulty['strName'] . '</option>';
+        }
+
+        $this->_objResponse->txtDifficulties = $txtDifficulties;
     }
 
     /**
@@ -177,8 +265,12 @@ class Command_Fragen extends Core_Base_Command implements IHttpRequest
     private function _doValidate() {
         $arrErrors = array();
 
-        if(!App_Tools_Validator::hasStringlength($this->_objRequest->strQuestion, 256, 50)) {
+        if(!App_Tools_Validator::hasStringlength($this->_objRequest->strQuestion, 256, 10)) {
             $arrErrors['strQuestion'] = true;
+        }
+
+        if(!App_Tools_Validator::notEmpty($this->_objRequest->category)) {
+            $arrErrors['category'] = true;
         }
 
         if(!App_Tools_Validator::notEmpty($this->_objRequest->difficulty)) {

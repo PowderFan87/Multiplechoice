@@ -79,4 +79,27 @@ WHERE
 
         return false;
     }
+
+    public static function deleteBypk($lngPk) {
+        try {
+            $strClass   = get_called_class();
+
+            $strQuery = '
+DELETE FROM
+    ' . $strClass::VIEW_NAME . '
+WHERE
+    ' . $strClass::VIEW_PK . ' = ' . $lngPk . '
+';
+
+            if(App_Factory_Resource::getResource()->exec($strQuery)) {
+                return $lngPk;
+            }
+        } catch(App_Factory_Exception $e) {
+            var_dump($e);
+        } catch(Resource_Exception $e) {
+            var_dump($e);
+        }
+
+        return false;
+    }
 }

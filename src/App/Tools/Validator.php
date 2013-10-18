@@ -81,7 +81,7 @@ class App_Tools_Validator
 
     public static function hasEnoughanswers($arrAnswers) {
         foreach($arrAnswers as $lngKey => $arrAnswer) {
-            if($arrAnswer['text'] == '') {
+            if($arrAnswer['strAnswer'] == '') {
                 unset($arrAnswers[$lngKey]);
             }
         }
@@ -91,11 +91,11 @@ class App_Tools_Validator
 
     public static function hasOnerightanswer($arrAnswers) {
         foreach($arrAnswers as $arrAnswer) {
-            if($arrAnswer['text'] == '') {
+            if($arrAnswer['strAnswer'] == '') {
                 continue;
             }
 
-            if(isset($arrAnswer['true']) && $arrAnswer['true'] == 'checked') {
+            if(isset($arrAnswer['blnTrue']) && $arrAnswer['blnTrue'] == 'checked') {
                 return true;
             }
         }

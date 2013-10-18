@@ -3,10 +3,10 @@
 
         #IF:is_array($this->_objResponse->arrQuestions)#
         <form id="action"></form>
+        <p>
+            <button class="btnNew" type="submit" form="action" formaction="#ROOT#/Fragen/Neu" formmethod="get">Neu</button>&nbsp;
+        </p>
         <table class="ui-widget ui-widget-content">
-            <p> 
-                <button class="btnNew" name="uid" value="#VAR:UID#" type="submit" form="action" formaction="#ROOT#/Fragen/Neu" formmethod="post">Neu</button>&nbsp;
-            </p>      
             <thead>
                 <tr class="ui-widget-header">
                     <th>#ID</th>
@@ -48,7 +48,7 @@
                     },
                     text: false
                 });
-                
+
                 $(".btnNew").button({
                     icons: {
                         primary: "ui-icon-plusthick"

@@ -9,6 +9,8 @@ class Command_Statistiken extends Core_Base_Command implements IHttpRequest
         $this->_objResponse->tplContent = 'Statistiken_GET_Liste';
 
         $this->_objResponse->arrSessions = viewSession::getAllsessions(false);
+
+        $this->_objResponse->arrStatsessions = viewSession::getAllsessionsgroupbycategory(false);;
     }
 
     public function getDetails() {

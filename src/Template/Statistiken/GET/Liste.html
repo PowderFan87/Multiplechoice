@@ -1,23 +1,8 @@
 
         <h1>Liste der Statistiken</h1>
 
-        <script type="text/javascript">
-            var kategorie[];
-            var punkte[];
-            kategorien[0] = ['Kategorie'];
-            punkte[0] = ['Punkte'];
-            var i = 0;
-            
-            document.write(kategorien[0]);
-      
-  }
-  
-    
-        </script>
-     
-        
       <a href="javascript:alert()">Unsere Erfolge</a>
-      
+
         #IF:is_array($this->_objResponse->arrSessions)#
          <form id="action"></form>
        <table class="ui-widget ui-widget-content">
@@ -31,13 +16,6 @@
             </thead>
             <tbody id="lisGame">
                 #FOREACH:arrSessions#
-                
-                <script type="text/javascript">
-                    i++;
-                    kategorien[i] = #VAR:strName#;
-                    punkte[i] = #VAR:lngPoints#;
-                </script>
-                
                 <tr>
                     <td>#VAR:UID#</td>
                     <td>#VAR:dtmStart#</td>
@@ -50,7 +28,7 @@
                 #/FOREACH#
             </tbody>
         </table>
-        
+
         <table>
            <tr>
                     <td>#VAR:kategorien[1]#</td>
@@ -65,42 +43,36 @@
         #IF:!is_array($this->_objResponse->arrSessions)#
         <h3>Keine Statistiken vorhanden!</h3>
         #/IF#
-        
+
         <script type="text/javascript">
             $(document).ready(function(){
-                $(".    icons: {
-                        primary: "ui-icon-trash"
-                    },
-                    text: false
-                });btnDelete").button({
+                $("btnDelete").button({
                     icons: {
                         primary: "ui-icon-trash"
                     },
                     text: false
                 });
             });
-            
-      alert("Test");      
-      alert(kategorien[0]);
-      alert(kategorien[1]);
         </script>
-        
+
     <script type="text/javascript" src="//www.google.com/jsapi"></script>
     <script type="text/javascript">
       google.load('visualization', '1', {packages: ['corechart']});
-    </script>
-    <script type="text/javascript">
+
       function drawVisualization() {
-        var data = google.visualization.arrayToDataTable([
-          ['Aufgabe', 'Stunden pro Tag'],
-          [kategorien[1], punkte[1]],
-          [kategorien[2], punkte[2]],
+        var data = new google.visualization.DataTable();
+
+        data.addColumn('string', 'Kategorien');
+        data.addColumn('number', 'Punkte');
+        data.addRows([
+            #FOREACH:arrStatsessions#['#VAR:strName#',#VAR:lngPoints#],#/FOREACH#
         ]);
-        
+
+
         new google.visualization.PieChart(document.getElementById('visualization')).
             draw(data, {title:"So, how was your day?"});
       }
-      
+
         google.setOnLoadCallback(drawVisualization);
     </script>
     <div id="visualization" style="width: 600px; height: 400px;"></div>

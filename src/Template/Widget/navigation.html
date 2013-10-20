@@ -1,5 +1,7 @@
 
-                <!--<a href="#ROOT#/Main">Home</a>-->
+                <a href="#ROOT#/Main">Home</a>
+                #IF:isset($_SESSION['loggedin'])#
+                <a href="#ROOT#/Main/Logout">Logout</a>
                 <div class="sub">
                     <a href="#ROOT#/Fragen/Liste">Fragen</a>
                     <br />
@@ -28,4 +30,6 @@
                     <a href="#ROOT#/Benutzer/Liste">Benutzerverwaltung</a>
                     <br />
                 </div>
+                #/IF#
+
                 <br clear="all" />

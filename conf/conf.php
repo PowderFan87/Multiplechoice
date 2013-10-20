@@ -35,6 +35,7 @@ define('CFG_WEB_ROOT', '/Multiplechoice/htdocs');
 
 // Hook configuration
 $GLOBALS['arrCFGPrehooks']  = array(
+    'App_Hook_Security'
 );
 $GLOBALS['arrCFGPosthooks'] = array(
 );

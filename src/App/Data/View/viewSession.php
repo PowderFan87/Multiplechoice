@@ -5,7 +5,7 @@ class viewSession extends App_Data_View_Base
     const VIEW_PK      = 'UID';
     const VIEW_ARCLASS = 'Sessions';
 
-    public static function getAllsessions($blnObjects = true) {
+    public static function getAllsessions($blnObjects = true, $arrOrderby = NULL) {
         $strARClass = 'App_Data_' . self::VIEW_ARCLASS;
         $strQuery   = '
 SELECT
@@ -13,7 +13,12 @@ SELECT
 FROM
     ' . self::VIEW_NAME . ', tblcategory
 WHERE
-    tblsessions.tblcategory_UID = tblcategory.UID';
+    tblsessions.tblcategory_UID = tblcategory.UID
+';
+
+        if(is_array($arrOrderby)) {
+            $strQuery .= 'ORDER BY ' . $arrOrderby[0] . ' ' . ($arrOrderby[1] === 1)?'ASC':'DESC';
+        }
 
         try {
             $arrData        = App_Factory_Resource::getResource()->read($strQuery, true);

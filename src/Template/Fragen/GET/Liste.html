@@ -1,11 +1,11 @@
 
         <h1>Liste der Fragen</h1>
 
-        #IF:is_array($this->_objResponse->arrQuestions)#
         <form id="action"></form>
         <p>
             <button class="btnNew" type="submit" form="action" formaction="#ROOT#/Fragen/Neu" formmethod="get">Neu</button>&nbsp;
         </p>
+        #IF:is_array($this->_objResponse->arrQuestions)#
         <table class="ui-widget ui-widget-content">
             <thead>
                 <tr class="ui-widget-header">

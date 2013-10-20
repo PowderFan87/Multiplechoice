@@ -39,7 +39,7 @@ class Core_Web_Template
         $this->_txtOutput = preg_replace_callback('/#TPL:([\w]*?)#/u', array($this, '_getTplreplacement'), $this->_txtOutput);
         $this->_txtOutput = preg_replace_callback('/#IF:([!=<>:\-\(\)\$\[\]\'\w]*?)#(.*?)#\/IF#/us', array($this, '_getIfreplacement'), $this->_txtOutput);
         $this->_txtOutput = preg_replace_callback('/#FOREACH:([\w]*?)#(.*?)#\/FOREACH#/us', array($this, '_getForeachreplacement'), $this->_txtOutput);
-        $this->_txtOutput = preg_replace_callback('/#VAR:([\w]*?)#/u', array($this, '_getVarreplacement'), $this->_txtOutput);
+        $this->_txtOutput = preg_replace_callback('/#VAR:([\w\|:]*?)#/u', array($this, '_getVarreplacement'), $this->_txtOutput);
 
         return $this->_txtOutput;
     }
@@ -60,8 +60,29 @@ class Core_Web_Template
      * @param array $arrMatch
      * @return mixed
      */
-    protected function _getVarreplacement($arrMatch) {
-        return $this->_objResponse->$arrMatch[1];
+    protected function _getVarreplacement($arrMatch, $arrData = NULL) {
+        $arrSplitted    = explode("|", $arrMatch[1]);
+        $strVarname     = array_shift($arrSplitted);
+
+        if($arrData === NULL) {
+            $mixValue = $this->_objResponse->$strVarname;
+        } else {
+            $mixValue = $arrData[$strVarname];
+        }
+
+        foreach($arrSplitted as $strFunction) {
+            $arrParams      = explode(":", $strFunction);
+            $strFunction    = array_shift($arrParams);
+
+            switch($strFunction) {
+                case 'wordwrap':
+                    $mixValue = wordwrap($mixValue, array_shift($arrParams), '<br />' . "\n", false);
+
+                    break;
+            }
+        }
+
+        return $mixValue;
     }
 
     /**
@@ -103,16 +124,19 @@ class Core_Web_Template
     protected function _getForeachreplacement($arrMatch) {
         $arrData    = $this->_objResponse->$arrMatch[1];
         $txtTpl     = $arrMatch[2];
-        $txtOutput  = "";
+        $txtOutput  = '';
 
-        foreach($arrData as $arrInput) {
-            $txtTmp = $txtTpl;
+        foreach($arrData as $arrRepeat) {
+            $txtTmp     = $txtTpl;
+            $arrResult  = array();
 
-            foreach($arrInput as $strKey => $mixValue) {
-                $txtTmp = str_replace("#VAR:$strKey#", $mixValue, $txtTmp);
+            preg_match_all('/#VAR:([\w\|:]*?)#/u', $txtTmp, $arrResult, PREG_SET_ORDER);
+
+            foreach($arrResult as $arrVarmatch) {
+                $txtTmp = str_replace('#VAR:' . $arrVarmatch[1] . '#', $this->_getVarreplacement($arrVarmatch, $arrRepeat), $txtTmp);
             }
 
-            $txtOutput .= "\n$txtTmp";
+            $txtOutput .= $txtTmp;
         }
 
         return $txtOutput;

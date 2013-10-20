@@ -1,6 +1,17 @@
 <?php
-class Command_Schwierigkeiten extends Core_Base_Command implements IHttpRequest
+class Command_Schwierigkeiten extends Core_Base_Command implements IHttpRequest, IRestricted
 {
+    public static function getRestriction() {
+        return 'App_Web_Security::isAuthenticated';
+    }
+
+    public function getFallback() {
+        $this->_objResponse->tplContent = 'Fragen_GET_Fallback';
+
+        $this->_objResponse->strFoo = 'You are not logged in';
+        $this->_objResponse->strTitle .= ' - Not logged in';
+    }
+
     public function getMain() {
         $this->getListe();
     }

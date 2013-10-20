@@ -1,10 +1,21 @@
 <?php
-class Command_Benutzer extends Core_Base_Command implements IHttpRequest
+class Command_Benutzer extends Core_Base_Command implements IHttpRequest, IRestricted
 {
+    public static function getRestriction() {
+        return 'App_Web_Security::isAuthenticated';
+    }
+
+    public function getFallback() {
+        $this->_objResponse->tplContent = 'Fragen_GET_Fallback';
+
+        $this->_objResponse->strFoo = 'You are not logged in';
+        $this->_objResponse->strTitle .= ' - Not logged in';
+    }
+
     public function getMain() {
         $this->getListe();
     }
-    
+
     public function getListe() {
         $this->_objResponse->tplContent = 'Benutzer_GET_Liste';
 
@@ -103,11 +114,11 @@ class Command_Benutzer extends Core_Base_Command implements IHttpRequest
         $this->_objResponse->UID        = $objBackenduser->getUID();
         $this->_objResponse->strName    = $objBackenduser->getstrName();
     }
-    
+
     protected function _doInit() {
 
     }
-    
+
      protected function _doValidate() {
         $arrErrors = array();
 

@@ -9,7 +9,6 @@
             </p>
             <thead class="sortable">
                 <tr class="ui-widget-header">
-                    <th title="UID">#ID</th>
                     <th title="strName">Kategorie</th>
                     <th></th>
                 </tr>
@@ -17,7 +16,6 @@
             <tbody id="lisGame">
                 #FOREACH:arrCategories#
                 <tr>
-                    <td>#VAR:UID#</td>
                     <td>#VAR:strName#</td>
                     <td>
                         <button class="btnEdit" name="uid" value="#VAR:UID#" type="submit" form="action" formaction="#ROOT#/Kategorien/Bearbeiten" formmethod="get">Bearbeiten</button>&nbsp;

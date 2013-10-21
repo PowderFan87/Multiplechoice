@@ -57,16 +57,16 @@ nav a:hover {
 
 .blueklein {
 	color: #1C94C4;
-	font-size: '1.2em';
+	font-size: 20px;
 }
 
 nav a:hover {
     color: #1C94C4;
 
-    -webkit-text-shadow: 0px 0px 25px #1C94C4;
-    -moz-text-shadow: 0px 0px 25px #1C94C4;
-    -o-text-shadow: 0px 0px 25px #1C94C4;
-    text-shadow: 0px 0px 25px #1C94C4;
+    -webkit-text-shadow: 0px 0px 25px #FFFFFF;
+    -moz-text-shadow: 0px 0px 25px #FFFFFF;
+    -o-text-shadow: 0px 0px 25px #FFFFFF;
+    text-shadow: 0px 0px 25px #FFFFFF;
 }
 
 nav div, nav a {

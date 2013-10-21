@@ -1,11 +1,11 @@
 
-        <h1>Schwierigkeitenverwaltung</h1>
+        <h1 class="blue">Schwierigkeitenverwaltung</h1>
 
         #IF:is_array($this->_objResponse->arrDifficulties)#
          <form id="action"></form>
        <table class="ui-widget ui-widget-content">
             <p>
-                <button class="btnNew" name="uid" value="#VAR:UID#" type="submit" form="action" formaction="#ROOT#/Schwierigkeiten/Neu" formmethod="post">Neu</button>&nbsp;
+                <button class="btnNew" name="uid" value="#VAR:UID#" type="submit" form="action" formaction="#ROOT#/Schwierigkeiten/Neu" formmethod="get">Neu</button>&nbsp;
             </p>
             <thead class="sortable">
                 <tr class="ui-widget-header">

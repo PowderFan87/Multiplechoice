@@ -31,9 +31,9 @@ class Command_Main extends Core_Base_Command implements IHttpRequest
         $this->_objResponse->tplContent    = 'Main_POST_Login';
 
         if(!App_Factory_Security::getSecurity()->tryLogin($this->_objRequest->strName)) {
-            $this->_objResponse->strMessage = "NICHT EINGELOGGT";
+            $this->_objResponse->strMessage = "Nicht eingeloggt!";
         } else {
-            $this->_objResponse->strMessage = "EINGELOGGT";
+            $this->_objResponse->strMessage = "Eingeloggt!";
         }
     }
 

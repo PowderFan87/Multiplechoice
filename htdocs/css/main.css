@@ -4,11 +4,11 @@
 
 body {
     padding: 0px 100px;
-    background-color: gray;
+    background-color: #FFFFCC;
 }
 
-header, section, footer, nav div nav.sub {
-    background-color: #FFFFFF;
+section, footer, nav div nav.sub {
+    background-color: #EEEEEE;
     margin-bottom: 50px;
 
     -webkit-border-radius: 5px;
@@ -16,32 +16,57 @@ header, section, footer, nav div nav.sub {
     -o-border-radius: 5px;
     border-radius: 5px;
 
-    -webkit-box-shadow: 0px 0px 10px 5px #FFFFFF, 0px 0px 10px 10px #FFFFFF;
-    -moz-box-shadow: 0px 0px 10px 5px #FFFFFF, 0px 0px 10px 10px #FFFFFF;
-    -o-box-shadow: 0px 0px 10px 5px #FFFFFF, 0px 0px 10px 10px #FFFFFF;
-    box-shadow: 0px 0px 10px 5px #FFFFFF, 0px 0px 10px 10px #FFFFFF;
+    -webkit-box-shadow: 0px 0px 10px 5px #EEEEEE, 0px 0px 10px 10px #EEEEEE;
+    -moz-box-shadow: 0px 0px 10px 5px #EEEEEE, 0px 0px 10px 10px #EEEEEE;
+    -o-box-shadow: 0px 0px 10px 5px #EEEEEE, 0px 0px 10px 10px #EEEEEE;
+    box-shadow: 0px 0px 10px 5px #EEEEEE, 0px 0px 10px 10px #EEEEEE;
+}
+
+header {
+    background-color: #F6A828;
+    margin-bottom: 50px;
+
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -o-border-radius: 5px;
+    border-radius: 5px;
+
+    -webkit-box-shadow: 0px 0px 10px 5px #F6A828, 0px 0px 10px 10px #F6A828;
+    -moz-box-shadow: 0px 0px 10px 5px #F6A828, 0px 0px 10px 10px #F6A828;
+    -o-box-shadow: 0px 0px 10px 5px #F6A828, 0px 0px 10px 10px #F6A828;
+    box-shadow: 0px 0px 10px 5px #F6A828, 0px 0px 10px 10px #F6A828;
 }
 
 h1,
+h2,
 h3,
 nav a,
 nav a:visited,
 nav a:active,
 nav a:focus,
 nav a:hover {
-    font-family: 'Audiowide', cursive;
+    font-family: 'Tahoma';
     color: #000000;
     text-decoration: none;
     margin-right: 20px;
 }
 
-nav a:hover {
-    color: #F6A828;
+.blue {
+	color: #1C94C4;
+}
 
-    -webkit-text-shadow: 0px 0px 25px #F6A828;
-    -moz-text-shadow: 0px 0px 25px #F6A828;
-    -o-text-shadow: 0px 0px 25px #F6A828;
-    text-shadow: 0px 0px 25px #F6A828;
+.blueklein {
+	color: #1C94C4;
+	font-size: '1.2em';
+}
+
+nav a:hover {
+    color: #1C94C4;
+
+    -webkit-text-shadow: 0px 0px 25px #1C94C4;
+    -moz-text-shadow: 0px 0px 25px #1C94C4;
+    -o-text-shadow: 0px 0px 25px #1C94C4;
+    text-shadow: 0px 0px 25px #1C94C4;
 }
 
 nav div, nav a {

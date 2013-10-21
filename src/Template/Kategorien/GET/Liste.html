@@ -1,11 +1,11 @@
 
-        <h1>Kategorienverwaltung</h1>
+        <h1 class="blue">Kategorienverwaltung</h1>
 
         #IF:is_array($this->_objResponse->arrCategories)#
         <form id="action"></form>
         <table class="ui-widget ui-widget-content">
             <p>
-                <button class="btnNew" name="uid" value="#VAR:UID#" type="submit" form="action" formaction="#ROOT#/Kategorien/Neu" formmethod="post">Neu</button>&nbsp;
+                <button class="btnNew" name="uid" value="#VAR:UID#" type="submit" form="action" formaction="#ROOT#/Kategorien/Neu" formmethod="get">Neu</button>&nbsp;
             </p>
             <thead class="sortable">
                 <tr class="ui-widget-header">

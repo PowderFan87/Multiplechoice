@@ -5,7 +5,7 @@
        <table class="ui-widget ui-widget-content">
            <thead class="sortable">
                 <tr class="ui-widget-header">
-                    <th title="dtmStart">Startdatum</th>
+                    <th title="dtmStart">Datum</th>
                     <th title="lngPoints">Kategorie</th>
                     <th title="lngPoints">Punktzahl</th>
                     <th></th>
@@ -50,11 +50,11 @@
             });
         </script>
 
-    <script type="text/javascript" src="//www.google.com/jsapi"></script>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
     <script type="text/javascript">
-      google.load('visualization', '1', {packages: ['corechart']});
-
-      function drawVisualization() {
+      google.load("visualization", "1", {packages:["corechart"]});
+      google.setOnLoadCallback(drawChart);
+      function drawChart() {
         var data = new google.visualization.DataTable();
 
         data.addColumn('string', 'Kategorien');
@@ -63,11 +63,76 @@
             #FOREACH:arrStatsessions#['#VAR:strName#',#VAR:lngPoints#],#/FOREACH#
         ]);
 
+        var options = {
+          title: 'Wie oft wurden die jeweiligen Kategorien geprüft?',
+          is3D: true,
+          backgroundColor: '#EEEEEE'
+        };
 
-        new google.visualization.PieChart(document.getElementById('visualization')).
-            draw(data, {title:"Bestanden?"});
+        var chart = new google.visualization.PieChart(document.getElementById('piechart_3d'));
+        chart.draw(data, options);            
       }
-
-        google.setOnLoadCallback(drawVisualization);
     </script>
-    <div id="visualization" style="width: 600px; height: 400px;"></div>
+    <table border="0">
+  <tr>
+      <td>  
+  <div id="piechart_3d" style="width: 500px; height: 350px;"></div>
+      </td>
+    <script type="text/javascript">
+      google.load("visualization", "1", {packages:["corechart"]});
+      google.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = new google.visualization.DataTable();
+
+        data.addColumn('string', 'Ergebnis');
+        data.addColumn('number', 'Punkte');
+        data.addRows([
+           ['Bestanden',3],
+           ['Nicht bestanden',2]
+        ]);
+
+        var options = {
+          title: 'Wie viele Prüflinge haben bestanden?',
+          is3D: true,
+          backgroundColor: '#EEEEEE'
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart_3d2'));
+        chart.draw(data, options);            
+      }
+    </script>
+    <td>
+    <div id="piechart_3d2" style="width: 500px; height: 350px;"></div>
+    </td>
+    </tr>
+    <script type="text/javascript">
+      google.load("visualization", "1", {packages:["corechart"]});
+      google.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Datum', 'Anzahl'],
+          ['21.10.2013',  10      ],
+          ['22.10.2013',  17      ],
+          ['23.10.2013',  14       ],
+          ['24.10.2013',  13      ]
+        ]);
+
+        var options = {
+          title: 'Wann wurde eine Prüfung durchgeführt?',
+          hAxis: {title: 'Datum',  titleTextStyle: {color: '#333'}},
+          vAxis: {title: 'Anzahl', titleTextStyle: {color: '#333'}, minValue: 0},
+          is3D: true,
+          backgroundColor: '#EEEEEE',
+          legend: {position: 'none'}
+        };
+
+        var chart = new google.visualization.AreaChart(document.getElementById('chart_div'));
+        chart.draw(data, options);
+      }
+    </script>
+    <tr>
+        <td colspan="2">
+            <div id="chart_div" style="width: 1000; height: 350px;"></div>
+        </td>
+    </tr>
+    </table>

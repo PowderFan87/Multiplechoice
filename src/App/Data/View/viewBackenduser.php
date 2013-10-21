@@ -59,27 +59,4 @@ WHERE
             return NULL;
         }
     }
-    
-    /*public static function deleteUserbyuid($UID) {
-        $strARClass = 'App_Data_' . self::VIEW_ARCLASS;
-        $strQuery   = '
-DELETE
-    *
-FROM
-    ' . self::VIEW_NAME . '
-WHERE
-    UID = \'' . $UID . '\'';
-
-        try {
-            $arrData = App_Factory_Resource::getResource()->readSingle($strQuery);
-
-            if(empty($arrData)) {
-                return NULL;
-            }
-
-            return new $strARClass($arrData);
-        } catch (Resource_Exception $e) {
-            return NULL;
-        }
-    }*/
 }

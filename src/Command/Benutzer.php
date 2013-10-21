@@ -147,8 +147,16 @@ class Command_Benutzer extends Core_Base_Command implements IHttpRequest, IRestr
         return $arrErrors;
     }
     
-    public function postLöschen() {
-         $this->_objResponse->tplContent = 'Benutzer_POST_Löschen';
+    public function getLoeschen() {
+        $this->_objResponse->tplContent = 'Benutzer_GET_Loeschen';
+
+        $objBackenduser = viewBackenduser::getBypk($this->_objRequest->UID);
+
+        viewBackenduser::deleteBypk($objBackenduser['UID']);
+    }
+    
+    public function postLoeschen() {
+         $this->_objResponse->tplContent = 'Benutzer_POST_Loeschen';
 
         $objBackenduser = viewBackenduser::getBypk($this->_objRequest->UID);
         

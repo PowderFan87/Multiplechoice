@@ -151,5 +151,7 @@ class Command_Benutzer extends Core_Base_Command implements IHttpRequest, IRestr
         $this->_objResponse->tplContent = 'Benutzer_GET_Loeschen';
 
         viewBackenduser::deleteBypk($this->_objRequest->uid);
+        
+        header("Location: " . CFG_WEB_ROOT . "/Benutzer/Liste");
     }
 }

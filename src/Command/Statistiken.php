@@ -74,4 +74,12 @@ class Command_Statistiken extends Core_Base_Command implements IHttpRequest, IRe
 
         return $arrErrors;
     }
+    
+    public function getLoeschen() {
+        $this->_objResponse->tplContent = 'Statistiken_GET_Loeschen';
+
+        viewBackenduser::deleteBypk($this->_objRequest->uid);
+        
+        header("Location: " . CFG_WEB_ROOT . "/Statistiken/Liste");
+    }
 }

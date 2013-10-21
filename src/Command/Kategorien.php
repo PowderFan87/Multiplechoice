@@ -279,4 +279,12 @@ class Command_Kategorien extends Core_Base_Command implements IHttpRequest, IRes
 
         $this->_objResponse->txtCategories      = $txtCategories;
     }
+    
+    public function getLoeschen() {
+        $this->_objResponse->tplContent = 'Kategorien_GET_Loeschen';
+
+        viewBackenduser::deleteBypk($this->_objRequest->uid);
+        
+        header("Location: " . CFG_WEB_ROOT . "/Kategorien/Liste");
+    }
 }

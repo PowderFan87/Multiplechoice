@@ -162,5 +162,7 @@ class Command_Schwierigkeiten extends Core_Base_Command implements IHttpRequest,
         $this->_objResponse->tplContent = 'Schwierigkeiten_GET_Loeschen';
 
         viewDifficulty::deleteBypk($this->_objRequest->uid);
+        
+        header("Location: " . CFG_WEB_ROOT . "/Schwierigkeiten/Liste");
     }
 }

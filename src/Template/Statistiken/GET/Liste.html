@@ -1,15 +1,13 @@
 
-        <h1>Liste der Statistiken</h1>
+        <h1>Statistiken</h1>
 
-      <a href="javascript:alert()">Unsere Erfolge</a>
-
-        #IF:is_array($this->_objResponse->arrSessions)#
          <form id="action"></form>
        <table class="ui-widget ui-widget-content">
            <thead class="sortable">
-                <tr class="ui-widget-header">e
+                <tr class="ui-widget-header">
                     <th title="UID">#ID</th>
                     <th title="dtmStart">Startdatum</th>
+                    <th title="lngPoints">Kategorie</th>
                     <th title="lngPoints">Punktzahl</th>
                     <th></th>
                 </tr>
@@ -19,8 +17,8 @@
                 <tr>
                     <td>#VAR:UID#</td>
                     <td>#VAR:dtmStart#</td>
-                    <td>#VAR:lngPoints#</td>
                     <td>#VAR:strName#</td>
+                    <td>#VAR:lngPoints#</td>
                     <td>
                         <button class="btnDelete" name="uid" value="#VAR:UID#" type="submit" form="action" formaction="#ROOT#/Statistiken/Löschen" formmethod="get">Löschen</button>
                     </td>
@@ -29,26 +27,25 @@
             </tbody>
         </table>
 
-        <table>
-           <tr>
-                    <td>#VAR:kategorien[1]#</td>
-                    <td>#VAR:punkte[1]#</td>
-                    <td>
-                        <button class="btnDelete" name="uid" value="#VAR:UID#" type="submit" form="action" formaction="#ROOT#/Statistiken/Löschen" formmethod="get">Löschen</button>
-                    </td>
-                </tr>
-        </table>
-        #/IF#
-
-        #IF:!is_array($this->_objResponse->arrSessions)#
-        <h3>Keine Statistiken vorhanden!</h3>
-        #/IF#
-
         <script type="text/javascript">
             $(document).ready(function(){
-                $("btnDelete").button({
+                $(".btnEdit").button({
+                    icons: {
+                        primary: "ui-icon-pencil"
+                    },
+                    text: false
+                });
+
+                $(".btnDelete").button({
                     icons: {
                         primary: "ui-icon-trash"
+                    },
+                    text: false
+                });
+
+                $(".btnNew").button({
+                    icons: {
+                        primary: "ui-icon-plusthick"
                     },
                     text: false
                 });
@@ -70,7 +67,7 @@
 
 
         new google.visualization.PieChart(document.getElementById('visualization')).
-            draw(data, {title:"So, how was your day?"});
+            draw(data, {title:"Bestanden?"});
       }
 
         google.setOnLoadCallback(drawVisualization);

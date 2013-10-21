@@ -9,7 +9,7 @@ class viewSession extends App_Data_View_Base
         $strARClass = 'App_Data_' . self::VIEW_ARCLASS;
         $strQuery   = '
 SELECT
-    tblcategory.strName, tblsessions.lngPoints
+    tblsessions.UID, tblsessions.dtmStart, tblcategory.strName, tblsessions.lngPoints
 FROM
     ' . self::VIEW_NAME . ', tblcategory
 WHERE
@@ -43,7 +43,7 @@ WHERE
         $strARClass = 'App_Data_' . self::VIEW_ARCLASS;
         $strQuery   = '
 SELECT
-    tblcategory.strName, tblsessions.lngPoints
+    tblsessions.UID, tblsessions.dtmStart, tblcategory.strName, tblsessions.lngPoints
 FROM
     ' . self::VIEW_NAME . ', tblcategory
 WHERE

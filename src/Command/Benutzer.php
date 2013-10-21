@@ -146,4 +146,38 @@ class Command_Benutzer extends Core_Base_Command implements IHttpRequest, IRestr
 
         return $arrErrors;
     }
+    
+    public function postLöschen() {
+        $this->_objResponse->tplContent = 'Benutzer_POST_Löschen';
+
+        $arrErrors  = $this->_doValidate();
+
+        if(!empty($arrErrors)) {
+            $this->_objResponse->tplContent = 'Benutzer_GET_Löschen';
+
+            $this->_objResponse->executed = true;
+
+            foreach($arrErrors as $strField => $blnError) {
+                if(!$blnError) {
+                    continue;
+                }
+
+                $strErrorvariable = 'ERROR_' . $strField;
+
+                $this->_objResponse->$strErrorvariable = 'error';
+            }
+
+            $this->_objResponse->strName    = $this->_objRequest->strName;
+        } else {
+            $objBackenduser = new App_Data_Backenduser();
+
+            $objBackenduser->setstrName($this->_objRequest->strName);
+
+            if(!$objBackenduser->doInsert()) {
+                $this->_objResponse->strMessage = 'FEHLER!!!';
+            } else {
+                header("Location: " . CFG_WEB_ROOT . "/Benutzer/Liste");
+            }
+        }
+    }
 }

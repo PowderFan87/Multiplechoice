@@ -36,4 +36,27 @@ FROM
             return NULL;
         }
     }
+    
+        public static function getDifficultybystrname($strName) {
+        $strARClass = 'App_Data_' . self::VIEW_ARCLASS;
+        $strQuery   = '
+SELECT
+    *
+FROM
+    ' . self::VIEW_NAME . '
+WHERE
+    strName = \'' . $strName . '\'';
+
+        try {
+            $arrData = App_Factory_Resource::getResource()->readSingle($strQuery);
+
+            if(empty($arrData)) {
+                return NULL;
+            }
+
+            return new $strARClass($arrData);
+        } catch (Resource_Exception $e) {
+            return NULL;
+        }
+    }
 }

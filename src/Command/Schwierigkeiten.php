@@ -157,4 +157,10 @@ class Command_Schwierigkeiten extends Core_Base_Command implements IHttpRequest,
 
         return $arrErrors;
     }
+    
+    public function getLoeschen() {
+        $this->_objResponse->tplContent = 'Schwierigkeiten_GET_Loeschen';
+
+        viewDifficulty::deleteBypk($this->_objRequest->uid);
+    }
 }

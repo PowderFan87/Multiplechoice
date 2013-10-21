@@ -6,7 +6,7 @@ class Command_Schwierigkeiten extends Core_Base_Command implements IHttpRequest,
     }
 
     public function getFallback() {
-        $this->_objResponse->tplContent = 'Fragen_GET_Fallback';
+        $this->_objResponse->tplContent = 'Schwierigkeiten_GET_Fallback';
 
         $this->_objResponse->strFoo = 'You are not logged in';
         $this->_objResponse->strTitle .= ' - Not logged in';

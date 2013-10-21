@@ -60,7 +60,7 @@ WHERE
         }
     }
     
-    public static function deleteUserbyuid($UID) {
+    /*public static function deleteUserbyuid($UID) {
         $strARClass = 'App_Data_' . self::VIEW_ARCLASS;
         $strQuery   = '
 DELETE
@@ -81,5 +81,5 @@ WHERE
         } catch (Resource_Exception $e) {
             return NULL;
         }
-    }
+    }*/
 }

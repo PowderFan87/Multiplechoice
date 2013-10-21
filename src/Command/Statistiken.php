@@ -6,7 +6,7 @@ class Command_Statistiken extends Core_Base_Command implements IHttpRequest, IRe
     }
 
     public function getFallback() {
-        $this->_objResponse->tplContent = 'Fragen_GET_Fallback';
+        $this->_objResponse->tplContent = 'Statistiken_GET_Fallback';
 
         $this->_objResponse->strFoo = 'You are not logged in';
         $this->_objResponse->strTitle .= ' - Not logged in';

@@ -6,7 +6,7 @@ class Command_Kategorien extends Core_Base_Command implements IHttpRequest, IRes
     }
 
     public function getFallback() {
-        $this->_objResponse->tplContent = 'Fragen_GET_Fallback';
+        $this->_objResponse->tplContent = 'Kategorien_GET_Fallback';
 
         $this->_objResponse->strFoo = 'You are not logged in';
         $this->_objResponse->strTitle .= ' - Not logged in';

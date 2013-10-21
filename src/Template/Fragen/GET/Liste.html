@@ -11,6 +11,7 @@
                 <tr class="ui-widget-header">
                     <th>#ID</th>
                     <th>Frage</th>
+                    <th>Kategorie</th>
                     <th></th>
                 </tr>
             </thead>
@@ -19,6 +20,7 @@
                 <tr>
                     <td>#VAR:UID#</td>
                     <td>#VAR:strQuestion|wordwrap:50#</td>
+                    <td>#VAR:strCategories#</td>
                     <td>
                         <button class="btnEdit" name="uid" value="#VAR:UID#" type="submit" form="action" formaction="#ROOT#/Fragen/Bearbeiten" formmethod="get">Bearbeiten</button>&nbsp;
                         <button class="btnDelete" name="uid" value="#VAR:UID#" type="submit" form="action" formaction="#ROOT#/Fragen/Löschen" formmethod="get">Löschen</button>

@@ -26,17 +26,33 @@ class App_Data_Question extends App_Data_Base
         $this->_arrDependencies[] = $objAnswer;
     }
 
-    public function getCategorymap() {
+    public function getCategorymap($blnString = false) {
         $arrReturn  = array();
-        $strQuery   = 'SELECT tblcategory_UID FROM tblquestion_has_tblcategory WHERE tblquestion_UID = ' . $this->getUID();
-
-        $arrCategories = App_Factory_Resource::getResource()->read($strQuery, true);
-
-        foreach($arrCategories as $arrCategory) {
-            $arrReturn[] = $arrCategory['tblcategory_UID'];
+        if(!$blnString) {
+            $strQuery   = 'SELECT tblcategory_UID FROM tblquestion_has_tblcategory WHERE tblquestion_UID = ' . $this->getUID();
+        } else {
+            $strQuery   = '
+SELECT tblcategory.strName AS strName
+FROM tblquestion_has_tblcategory
+LEFT JOIN tblcategory ON ( tblcategory.UID = tblquestion_has_tblcategory.tblcategory_UID )
+WHERE tblquestion_UID = ' . $this->getUID();
         }
 
-        return $arrReturn;
+        try {
+            $arrCategories = App_Factory_Resource::getResource()->read($strQuery, true);
+
+            foreach($arrCategories as $arrCategory) {
+                if(!$blnString) {
+                    $arrReturn[] = $arrCategory['tblcategory_UID'];
+                } else {
+                    $arrReturn[] = $arrCategory['strName'];
+                }
+            }
+
+            return $arrReturn;
+        } catch (Exception $e) {
+            return array();
+        }
     }
 
     public function addCategory($lngCategoryid) {

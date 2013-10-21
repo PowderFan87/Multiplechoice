@@ -63,7 +63,7 @@ abstract class App_Data_Base
                 }
 
                 if(array_key_exists($strAttrname, $this->_arrData)) {
-                    $this->_arrData[$strAttrname]   = $arrArguments[0];
+                    $this->_arrData[$strAttrname]   = htmlentities($arrArguments[0]);
                     $this->_blnAltered              = true;
 
                     return true;

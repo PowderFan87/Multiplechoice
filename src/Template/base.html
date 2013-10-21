@@ -40,6 +40,9 @@
                 }).on("mouseleave", function(){
                     $(this).children("nav").hide();
                 });
+                $(".sortable th[title]").click(function(){
+                    window.location.href = window.location.pathname+'?order='+$(this).attr('title');
+                });
             });
         </script>
 

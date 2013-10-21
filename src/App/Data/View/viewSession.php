@@ -17,7 +17,7 @@ WHERE
 ';
 
         if(is_array($arrOrderby)) {
-            $strQuery .= 'ORDER BY ' . $arrOrderby[0] . ' ' . ($arrOrderby[1] === 1)?'ASC':'DESC';
+            $strQuery .= 'ORDER BY ' . $arrOrderby[0] . ' ' . (($arrOrderby[1] === 1)?'ASC':'DESC');
         }
 
         try {

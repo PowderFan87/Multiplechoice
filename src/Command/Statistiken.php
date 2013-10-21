@@ -19,7 +19,25 @@ class Command_Statistiken extends Core_Base_Command implements IHttpRequest, IRe
     public function getListe() {
         $this->_objResponse->tplContent = 'Statistiken_GET_Liste';
 
-        $this->_objResponse->arrSessions = viewSession::getAllsessions(false);
+        if($this->_objRequest->order != '') {
+            if(isset($_SESSION['lastOrder']) && $_SESSION['lastOrder'][0] == $this->_objRequest->order) {
+                $arrOrder = array(
+                    $this->_objRequest->order,
+                    ($_SESSION['lastOrder'][1] == 1)?0:1
+                );
+            } else {
+                $arrOrder = array(
+                    $this->_objRequest->order,
+                    1
+                );
+            }
+
+            $_SESSION['lastOrder'] = $arrOrder;
+
+            $this->_objResponse->arrSessions = viewSession::getAllsessions(false, $arrOrder);
+        } else {
+            $this->_objResponse->arrSessions = viewSession::getAllsessions(false);
+        }
 
         $this->_objResponse->arrStatsessions = viewSession::getAllsessionsgroupbycategory(false);;
     }

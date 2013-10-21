@@ -19,7 +19,25 @@ class Command_Kategorien extends Core_Base_Command implements IHttpRequest, IRes
     public function getListe() {
         $this->_objResponse->tplContent = 'Kategorien_GET_Liste';
 
-        $this->_objResponse->arrCategories = viewCategory::getAllcategories(false);
+        if($this->_objRequest->order != '') {
+            if(isset($_SESSION['lastOrder']) && $_SESSION['lastOrder'][0] == $this->_objRequest->order) {
+                $arrOrder = array(
+                    $this->_objRequest->order,
+                    ($_SESSION['lastOrder'][1] == 1)?0:1
+                );
+            } else {
+                $arrOrder = array(
+                    $this->_objRequest->order,
+                    1
+                );
+            }
+
+            $_SESSION['lastOrder'] = $arrOrder;
+
+            $this->_objResponse->arrCategories = viewCategory::getAllcategories(false, $arrOrder);
+        } else {
+            $this->_objResponse->arrCategories = viewCategory::getAllcategories(false);
+        }
     }
 
      public function getDetails() {

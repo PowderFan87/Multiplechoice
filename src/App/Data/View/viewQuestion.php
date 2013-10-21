@@ -15,7 +15,7 @@ FROM
 ';
 
         if(is_array($arrOrderby)) {
-            $strQuery .= 'ORDER BY ' . $arrOrderby[0] . ' ' . ($arrOrderby[1] === 1)?'ASC':'DESC';
+            $strQuery .= 'ORDER BY ' . $arrOrderby[0] . ' ' . (($arrOrderby[1] === 1)?'ASC':'DESC');
         }
 
         try {
@@ -47,7 +47,7 @@ FROM
 ';
 
         if(is_array($arrOrderby)) {
-            $strQuery .= 'ORDER BY ' . $arrOrderby[0] . ' ' . ($arrOrderby[1] === 1)?'ASC':'DESC';
+            $strQuery .= 'ORDER BY ' . $arrOrderby[0] . ' ' . (($arrOrderby[1] === 1)?'ASC':'DESC');
         }
 
         try {
@@ -80,6 +80,8 @@ FROM
                 return $arrResponse;
             }
         } catch (Resource_Exception $e) {
+            var_dump($e);
+
             return NULL;
         }
     }

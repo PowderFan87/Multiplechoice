@@ -4,13 +4,13 @@
         #IF:is_array($this->_objResponse->arrBackendusers)#
         <form id="action"></form>
         <table class="ui-widget ui-widget-content">
-            <p> 
+            <p>
                 <button class="btnNew" name="uid" value="#VAR:UID#" type="submit" form="action" formaction="#ROOT#/Benutzer/Neu" formmethod="post">Neu</button>&nbsp;
             </p>
-            <thead>
+            <thead class="sortable">
                 <tr class="ui-widget-header">
-                    <th>#ID</th>
-                    <th>Benutzer</th>
+                    <th title="UID">#ID</th>
+                    <th title="strName">Benutzer</th>
                     <th></th>
                 </tr>
             </thead>
@@ -32,7 +32,7 @@
         #IF:!is_array($this->_objResponse->arrBackendusers)#
         <h3>Keine Benutzer vorhanden!</h3>
         #/IF#
-        
+
         <script type="text/javascript">
             $(document).ready(function(){
                 $(".btnEdit").button({
@@ -48,7 +48,7 @@
                     },
                     text: false
                 });
-                
+
                 $(".btnNew").button({
                     icons: {
                         primary: "ui-icon-plusthick"

@@ -19,7 +19,25 @@ class Command_Fragen extends Core_Base_Command implements IHttpRequest, IRestric
     public function getListe() {
         $this->_objResponse->tplContent = 'Fragen_GET_Liste';
 
-        $this->_objResponse->arrQuestions = viewQuestion::getAllquestionswithcategories(false);
+        if($this->_objRequest->order != '') {
+            if(isset($_SESSION['lastOrder']) && $_SESSION['lastOrder'][0] == $this->_objRequest->order) {
+                $arrOrder = array(
+                    $this->_objRequest->order,
+                    ($_SESSION['lastOrder'][1] == 1)?0:1
+                );
+            } else {
+                $arrOrder = array(
+                    $this->_objRequest->order,
+                    1
+                );
+            }
+
+            $_SESSION['lastOrder'] = $arrOrder;
+
+            $this->_objResponse->arrQuestions = viewQuestion::getAllquestionswithcategories(false, $arrOrder);
+        } else {
+            $this->_objResponse->arrQuestions = viewQuestion::getAllquestionswithcategories(false);
+        }
     }
 
     public function getDetails() {

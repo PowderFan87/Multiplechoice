@@ -19,7 +19,25 @@ class Command_Schwierigkeiten extends Core_Base_Command implements IHttpRequest,
     public function getListe() {
         $this->_objResponse->tplContent = 'Schwierigkeiten_GET_Liste';
 
-        $this->_objResponse->arrDifficulties = viewDifficulty::getAlldifficulties(false);
+        if($this->_objRequest->order != '') {
+            if(isset($_SESSION['lastOrder']) && $_SESSION['lastOrder'][0] == $this->_objRequest->order) {
+                $arrOrder = array(
+                    $this->_objRequest->order,
+                    ($_SESSION['lastOrder'][1] == 1)?0:1
+                );
+            } else {
+                $arrOrder = array(
+                    $this->_objRequest->order,
+                    1
+                );
+            }
+
+            $_SESSION['lastOrder'] = $arrOrder;
+
+            $this->_objResponse->arrDifficulties = viewDifficulty::getAlldifficulties(false, $arrOrder);
+        } else {
+            $this->_objResponse->arrDifficulties = viewDifficulty::getAlldifficulties(false);
+        }
     }
 
     public function getDetails() {

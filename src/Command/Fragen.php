@@ -127,6 +127,8 @@ class Command_Fragen extends Core_Base_Command implements IHttpRequest, IRestric
                 }
 
                 $objQuestion->doFullupdate(true);
+                
+                header("Location: " . CFG_WEB_ROOT . "/Fragen/Liste");
             }
         }
     }
@@ -209,6 +211,8 @@ class Command_Fragen extends Core_Base_Command implements IHttpRequest, IRestric
                 }
 
                 $objQuestion->doFullupdate(true);
+                
+                header("Location: " . CFG_WEB_ROOT . "/Fragen/Liste");
             }
         }
     }

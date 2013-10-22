@@ -73,7 +73,7 @@ GROUP BY tblcategory.strName';
         $strARClass = 'App_Data_' . self::VIEW_ARCLASS;
         $strQuery   = '
 SELECT
-    COUNT(UID) As "CountSessions"
+    COUNT(UID) As lngPoints
 FROM
     ' . self::VIEW_NAME;
 
@@ -100,7 +100,7 @@ FROM
         $strARClass = 'App_Data_' . self::VIEW_ARCLASS;
         $strQuery   = '
 SELECT
-    COUNT(UID) As "CountSuccessful"
+    COUNT(UID) As lngPoints
 FROM
     ' . self::VIEW_NAME . '
 WHERE
@@ -129,7 +129,7 @@ WHERE
         $strARClass = 'App_Data_' . self::VIEW_ARCLASS;
         $strQuery   = '
 SELECT
-    COUNT(UID) As "Anzahl", dtmStart As "Datum"
+    COUNT(UID) As Anzahl, dtmStart
 FROM
     ' . self::VIEW_NAME . '
 GROUP BY

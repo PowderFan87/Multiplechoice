@@ -53,8 +53,8 @@
     <script type="text/javascript" src="https://www.google.com/jsapi"></script>
     <script type="text/javascript">
       google.load("visualization", "1", {packages:["corechart"]});
-      google.setOnLoadCallback(drawChart);
-      function drawChart() {
+      google.setOnLoadCallback(drawChart1);
+      function drawChart1() {
         var data = new google.visualization.DataTable();
 
         data.addColumn('string', 'Kategorien');
@@ -80,15 +80,15 @@
       </td>
     <script type="text/javascript">
       google.load("visualization", "1", {packages:["corechart"]});
-      google.setOnLoadCallback(drawChart);
-      function drawChart() {
+      google.setOnLoadCallback(drawChart2);
+      function drawChart2() {
         var data = new google.visualization.DataTable();
 
         data.addColumn('string', 'Ergebnis');
         data.addColumn('number', 'Punkte');
         data.addRows([
-           ['Bestanden',3],
-           ['Nicht bestanden',2]
+           #FOREACH:arrCountsessionspoints#['Bestanden',#VAR:lngPoints#],#/FOREACH#
+           #FOREACH:arrCountsessions#['Nicht bestanden',#VAR:lngPoints#],#/FOREACH#
         ]);
 
         var options = {
@@ -107,14 +107,11 @@
     </tr>
     <script type="text/javascript">
       google.load("visualization", "1", {packages:["corechart"]});
-      google.setOnLoadCallback(drawChart);
-      function drawChart() {
+      google.setOnLoadCallback(drawChart3);
+      function drawChart3() {
         var data = google.visualization.arrayToDataTable([
-          ['Datum', 'Anzahl'],
-          ['21.10.2013',  10      ],
-          ['22.10.2013',  17      ],
-          ['23.10.2013',  14       ],
-          ['24.10.2013',  13      ]
+          ['Datum', 'Sessions'],
+          #FOREACH:arrPointsessions#['#VAR:dtmStart#',#VAR:Anzahl#],#/FOREACH#
         ]);
 
         var options = {

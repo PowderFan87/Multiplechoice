@@ -39,7 +39,10 @@ class Command_Statistiken extends Core_Base_Command implements IHttpRequest, IRe
             $this->_objResponse->arrSessions = viewSession::getAllsessions(false);
         }
 
-        $this->_objResponse->arrStatsessions = viewSession::getAllsessionsgroupbycategory(false);;
+        $this->_objResponse->arrStatsessions = viewSession::getAllsessionsgroupbycategory(false);
+        $this->_objResponse->arrCountsessions = viewSession::getCountsessions(false);
+        $this->_objResponse->arrCountsessionspoints = viewSession::getCountsessionsbypoints(false);
+        $this->_objResponse->arrPointsessions = viewSession::getSessionsbydate(false);
     }
 
     public function getDetails() {

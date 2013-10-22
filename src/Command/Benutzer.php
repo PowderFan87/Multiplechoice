@@ -55,7 +55,7 @@ class Command_Benutzer extends Core_Base_Command implements IHttpRequest, IRestr
     public function getBearbeiten() {
         $this->_objResponse->tplContent = 'Benutzer_GET_Bearbeiten';
 
-        $objBackenduser = viewBackenduser::getBypk($this->_objRequest->UID);
+        $objBackenduser = viewBackenduser::getBypk($this->_objRequest->uid);
 
         $this->_fillTemplate($objBackenduser);
     }

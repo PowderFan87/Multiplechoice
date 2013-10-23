@@ -148,9 +148,14 @@ class Command_Kategorien extends Core_Base_Command implements IHttpRequest, IRes
             $this->_objResponse->txtCategories = $txtCategories;
         } else {
             $objCategory->setstrName($this->_objRequest->strName);
-            $objCategory->setlngOpttime($this->_objRequest->lngOpttime);
+            
+            if($this->_objRequest->lngParentid > 0) {
+                $objCategory->setlngParentid($this->_objRequest->lngParentid);
+            } else {
+                $objCategory->setlngParentid(NULL);
+            }
 
-            $objCategory->doFullupdate(true);
+            $objCategory->doFullupdate();
         }
     }
 

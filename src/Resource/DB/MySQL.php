@@ -98,7 +98,11 @@ class Resource_DB_MySQL implements IResource
         $strSql         = 'UPDATE ' . $strView . ' SET %s %s';
 
         foreach ($arrFieldList as $strFieldName => $mixFieldValue) {
-            $arrValues[] = $strFieldName . ' = \'' . $mixFieldValue . '\'';
+            if($mixFieldValue === NULL) {
+                $arrValues[] = $strFieldName . ' = NULL';
+            } else {
+                $arrValues[] = $strFieldName . ' = \'' . $mixFieldValue . '\'';
+            }
         }
 
         $blnFirst = true;

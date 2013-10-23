@@ -155,7 +155,11 @@ class Resource_DB_MySQL implements IResource
             }
         } else {
             foreach ($arrFieldList as $strFieldName => $mixFieldValue) {
-                $arrValues[] = $strFieldName . ' = "' . $mixFieldValue . '"';
+                if($mixFieldValue === NULL) {
+                    $arrValues[] = $strFieldName . ' = NULL';
+                } else {
+                    $arrValues[] = $strFieldName . ' = "' . $mixFieldValue . '"';
+                }
             }
         }
 

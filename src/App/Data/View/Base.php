@@ -54,7 +54,7 @@ abstract class App_Data_View_Base
      * @param integer $lngPk
      * @return App_Data_Base|boolean
      */
-    public static function getBypk($lngPk) {
+    public static function getBypk($lngPk, $flgNodeleted = false) {
         try {
             $strClass   = get_called_class();
             $strARClass = 'App_Data_' . $strClass::VIEW_ARCLASS;
@@ -66,7 +66,7 @@ FROM
     ' . $strClass::VIEW_NAME . '
 WHERE
     ' . $strClass::VIEW_PK . ' = ' . $lngPk . '
-';
+' . (($flgNodeleted)?'AND blnDeleted = 0':'');
 
             $arrData = App_Factory_Resource::getResource()->readSingle($strQuery);
 
@@ -94,6 +94,27 @@ WHERE
             if(App_Factory_Resource::getResource()->exec($strQuery)) {
                 return $lngPk;
             }
+        } catch(App_Factory_Exception $e) {
+            var_dump($e);
+        } catch(Resource_Exception $e) {
+            var_dump($e);
+        }
+
+        return false;
+    }
+
+    public static function deleteByblndeleted($lngPk) {
+        try {
+            $strClass   = get_called_class();
+            $objARClass = $strClass::getBypk($lngPk);
+
+            $objARClass->setblnDeleted(1);
+
+            if(!$objARClass->doFullupdate()) {
+                return false;
+            }
+
+            return $lngPk;
         } catch(App_Factory_Exception $e) {
             var_dump($e);
         } catch(Resource_Exception $e) {

@@ -1,5 +1,5 @@
 
-<h1 class="blue">Kategorienverwaltung</h1>        
+<h1 class="blue">Kategorienverwaltung</h1>
 <h2 class="blueklein">Neue Kategorie</h2>
 
         <form method="post">
@@ -9,10 +9,10 @@
                     <td><input type="text" id="strName" name="strName" value="#VAR:strName#" class="text ui-widget-content ui-corner-all" /></td>
                 </tr>
                 <tr>
-                    <th><label for="strParentid">Überkategorie</label></th>
+                    <th><label for="lngParentid" class="#VAR:ERROR_lngParentid#">Überkategorie</label></th>
                     <td>
-                        <select id="category" name="strParentid" multiple="multiple" size="3" class="text ui-widget-content ui-corner-all">
-                            <option value="-">--- Auswahl ---</option>
+                        <select id="lngParentid" name="lngParentid" size="3" class="text ui-widget-content ui-corner-all">
+                            <option value="">--- Auswahl ---</option>
                             #VAR:txtCategories#
                         </select>
                     </td>

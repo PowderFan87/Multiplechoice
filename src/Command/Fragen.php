@@ -98,15 +98,13 @@ class Command_Fragen extends Core_Base_Command implements IHttpRequest, IRestric
             $this->_buildCategoryselect();
             $this->_buildDifficultyselect();
         } else {
-            $objQuestion = new App_Data_Question();
+            $objUser        = App_Factory_Security::getSecurity()->getObjuser();
+            $objQuestion    = new App_Data_Question();
 
             $objQuestion->setstrQuestion($this->_objRequest->strQuestion);
             $objQuestion->setlngOpttime($this->_objRequest->lngOpttime);
             $objQuestion->settbldifficulty_UID($this->_objRequest->difficulty);
-
-            //STATIC PART!!!
-            $objQuestion->settblbackenduser_UID(1);
-            //CHANGE!!!
+            $objQuestion->settblbackenduser_UID($objUser->getUID());
 
             if(!$objQuestion->doInsert()) {
                 //@TODO ERROR
@@ -129,7 +127,7 @@ class Command_Fragen extends Core_Base_Command implements IHttpRequest, IRestric
                 }
 
                 $objQuestion->doFullupdate(true);
-                
+
                 header("Location: " . CFG_WEB_ROOT . "/Fragen/Liste");
             }
         }
@@ -213,7 +211,7 @@ class Command_Fragen extends Core_Base_Command implements IHttpRequest, IRestric
                 }
 
                 $objQuestion->doFullupdate(true);
-                
+
                 header("Location: " . CFG_WEB_ROOT . "/Fragen/Liste");
             }
         }
@@ -322,12 +320,12 @@ class Command_Fragen extends Core_Base_Command implements IHttpRequest, IRestric
 
         return $arrErrors;
     }
-    
+
     public function getLoeschen() {
         $this->_objResponse->tplContent = 'Fragen_GET_Loeschen';
 
         viewBackenduser::deleteBypk($this->_objRequest->uid);
-        
+
         header("Location: " . CFG_WEB_ROOT . "/Fragen/Liste");
     }
 }

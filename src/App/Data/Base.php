@@ -63,8 +63,13 @@ abstract class App_Data_Base
                 }
 
                 if(array_key_exists($strAttrname, $this->_arrData)) {
-                    $this->_arrData[$strAttrname]   = htmlentities($arrArguments[0]);
-                    $this->_blnAltered              = true;
+                    if($arrArguments[0] === NULL) {
+                        $this->_arrData[$strAttrname] = NULL;
+                    } else {
+                        $this->_arrData[$strAttrname] = htmlentities($arrArguments[0]);
+                    }
+
+                    $this->_blnAltered = true;
 
                     return true;
                 }

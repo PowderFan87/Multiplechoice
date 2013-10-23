@@ -89,6 +89,7 @@ WHERE tblquestion_UID = ' . $this->getUID();
             'strQuestion'           => '',
             'lngCountshowed'        => 0,
             'lngOpttime'            => 0,
+            'blnDeleted'            => 0,
             'tbldifficulty_UID'     => NULL,
             'tblbackenduser_UID'    => NULL
         );

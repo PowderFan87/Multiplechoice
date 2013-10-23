@@ -7,7 +7,8 @@ class App_Data_Category extends App_Data_Base
     protected function _getEmpryarray() {
         return array(
             'lngParentid'   => NULL,
-            'strName'       => ''
+            'strName'       => '',
+            'blnDeleted'            => 0
         );
     }
 }

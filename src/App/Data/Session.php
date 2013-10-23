@@ -8,7 +8,8 @@ class App_Data_Session extends App_Data_Base
         return array(
             'dtmStart'               => '1900-01-01 00:00:00',
             'strName'                => '',
-            'lngPoints'              => 0
+            'lngPoints'              => 0,
+            'blnDeleted'            => 0
         );
     }
 }

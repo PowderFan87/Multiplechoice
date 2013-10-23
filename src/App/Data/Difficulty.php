@@ -7,7 +7,8 @@ class App_Data_Difficulty extends App_Data_Base
     protected function _getEmpryarray() {
         return array(
             'strName'   => '',
-            'lngTime'   => 0
+            'lngTime'   => 0,
+            'blnDeleted'            => 0
         );
     }
 }

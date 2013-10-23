@@ -51,6 +51,8 @@ class Command_Fragen extends Core_Base_Command implements IHttpRequest, IRestric
     public function getNeu() {
         $this->_objResponse->tplContent             = 'Fragen_GET_Neu';
 
+        $this->_objResponse->lngOpttime = 0;
+        
         $this->_buildCategoryselect();
         $this->_buildDifficultyselect();
     }

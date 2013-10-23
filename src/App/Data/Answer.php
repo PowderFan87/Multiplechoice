@@ -10,6 +10,7 @@ class App_Data_Answer extends App_Data_Base
             'lngCountshowed'        => 0,
             'lngCountselected'      => 0,
             'blnTrue'               => 0,
+            'blnDeleted'            => 0,
             'tblquestion_UID'       => NULL
         );
     }

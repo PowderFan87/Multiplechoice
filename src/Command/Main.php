@@ -25,6 +25,8 @@ class Command_Main extends Core_Base_Command implements IHttpRequest
 
     public function getLogout() {
         App_Factory_Security::getSecurity()->doDestroysession();
+        
+        header("Location: " . CFG_WEB_ROOT . "/Main");
     }
 
     public function postLogin() {
@@ -34,6 +36,8 @@ class Command_Main extends Core_Base_Command implements IHttpRequest
             $this->_objResponse->strMessage = "Nicht eingeloggt!";
         } else {
             $this->_objResponse->strMessage = "Eingeloggt!";
+            
+            header("Location: " . CFG_WEB_ROOT . "/Fragen/Liste");
         }
     }
 

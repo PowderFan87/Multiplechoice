@@ -111,6 +111,8 @@ class Command_Kategorien extends Core_Base_Command implements IHttpRequest, IRes
             }
 
             $objCategory->doInsert();
+            
+            header("Location: " . CFG_WEB_ROOT . "/Kategorien/Liste");
         }
     }
 
@@ -156,6 +158,8 @@ class Command_Kategorien extends Core_Base_Command implements IHttpRequest, IRes
             }
 
             $objCategory->doFullupdate();
+            
+            header("Location: " . CFG_WEB_ROOT . "/Kategorien/Liste");
         }
     }
 

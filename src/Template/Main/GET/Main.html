@@ -1,12 +1,16 @@
 
         <h1 class="blue">#VAR:strWellcome#</h1>
 
-        <br />
-
         #IF:!isset($_SESSION['loggedin'])#
+        <h2 class="blueklein">Anmelden</h2>
+        
         <form action="/Multiplechoice/htdocs/Main/Login" method="post">
-            <label for="strName">Username: </label>&nbsp;<input type="text" name="strName" id="strName" />
+            <label for="strName">Benutzername</label>&nbsp;<input type="text" name="strName" id="strName" />
             <br />
             <input type="submit" value="Anmelden" />
         </form>
+        #/IF#
+        
+        #IF:isset($_SESSION['loggedin'])#
+        <h2 class="blueklein">Schon angemeldet!</h2>
         #/IF#

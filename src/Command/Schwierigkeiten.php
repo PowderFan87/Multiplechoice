@@ -57,7 +57,7 @@ class Command_Schwierigkeiten extends Core_Base_Command implements IHttpRequest,
     public function getBearbeiten() {
         $this->_objResponse->tplContent = 'Schwierigkeiten_GET_Bearbeiten';
 
-        $objDifficulty = viewDifficulty::getBypk($this->_objRequest->UID);
+        $objDifficulty = viewDifficulty::getBypk($this->_objRequest->uid);
 
         $this->_fillTemplate($objDifficulty);
     }

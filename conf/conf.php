@@ -1,6 +1,6 @@
 <?php
-error_reporting(E_ALL); //E_ALL zu 0
-ini_set('display_errors', '1'); //1 zu 0
+error_reporting(0); //E_ALL zu 0
+ini_set('display_errors', '0'); //1 zu 0
 
 // Basic project directory
 define('BASE_DIR', __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR);

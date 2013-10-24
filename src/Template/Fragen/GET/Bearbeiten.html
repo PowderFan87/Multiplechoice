@@ -37,7 +37,7 @@
                 <tr>
                     <th><label for="strQuestion" class="#VAR:ERROR_strQuestion#">Frage</label></th>
                     <td>
-                        <textarea id="strQuestion" name="strQuestion" cols="50" rows="5" class="text ui-widget-content ui-corner-all">#VAR:strQuestion#</textarea>
+                        <textarea id="strQuestion" name="strQuestion" cols="39" rows="5" class="text ui-widget-content ui-corner-all">#VAR:strQuestion#</textarea>
                     </td>
                 </tr>
                 <tr>
@@ -59,6 +59,12 @@
                     </td>
                 </tr>
                 <tr>
+                    <th><label for="lngCountshowed">Angezeigt</label></th>
+                     <td>
+                            <input type="text" name="lngCountshowed" value="#VAR:lngCountshowed#" class="text ui-widget-content ui-corner-all" />
+                     </td>
+                </tr>
+                <tr>
                     <th><label for="lngOpttime">Anzeigezeit (optional)</label></th>
                     <td><input id="lngOpttime" name="lngOpttime" value="#VAR:lngOpttime#" class="text ui-widget-content ui-corner-all" /></td>
                 </tr>
@@ -71,8 +77,10 @@
             <table style="float: left; margin-left: 50px;">
                 <thead>
                     <tr>
-                        <th class="#VAR:ERROR_antwort#">Antwort:</th>
+                        <th class="#VAR:ERROR_antwort#">Antwort</th>
                         <th class="#VAR:ERROR_antwort#">Richtig?</th>
+                        <th class="#VAR:ERROR_antwort#">Angezeigt</th>
+                        <th class="#VAR:ERROR_antwort#">Ausgewählt</th>
                     </tr>
                 </thead>
                 <tbody id="answerlist">
@@ -84,6 +92,12 @@
                         </td>
                         <td>
                             <input type="checkbox" name="antwort[#VAR:UID#][blnTrue]" value="checked" #VAR:blnTrue# class="text ui-widget-content ui-corner-all" />
+                        </td>
+                        <td>
+                            <input type="text" name="antwort[#VAR:UID#][lngCountshowed]" value="#VAR:lngCountshowed#" class="text ui-widget-content ui-corner-all" />
+                        </td>
+                        <td>
+                            <input type="text" name="antwort[#VAR:UID#][lngCountselected]" value="#VAR:lngCountselected#" class="text ui-widget-content ui-corner-all" />
                         </td>
                     </tr>
                     #/FOREACH#

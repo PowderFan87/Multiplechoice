@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 23. Okt 2013 um 20:35
+-- Erstellungszeit: 24. Okt 2013 um 19:18
 -- Server Version: 5.5.32
 -- PHP-Version: 5.4.19
 
@@ -38,7 +38,7 @@ CREATE TABLE IF NOT EXISTS `tblanswer` (
   `tblquestion_UID` int(11) NOT NULL,
   PRIMARY KEY (`UID`),
   KEY `fk_tblanswer_tblquestion1_idx` (`tblquestion_UID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=231 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=235 ;
 
 --
 -- Daten für Tabelle `tblanswer`
@@ -119,10 +119,10 @@ INSERT INTO `tblanswer` (`UID`, `strAnswer`, `lngCountshowed`, `lngCountselected
 (72, 'Pita', 0, 0, 0, 0, 18),
 (73, 'Mordor', 0, 0, 0, 0, 18),
 (74, 'Vesuv', 0, 0, 0, 0, 18),
-(75, 'Tundra', 0, 0, 1, 0, 19),
-(76, 'Tantra', 0, 0, 0, 0, 19),
-(77, 'Tanga', 0, 0, 0, 0, 19),
-(78, 'Sibirien', 0, 0, 0, 0, 19),
+(75, 'Brasilien', 0, 0, 1, 0, 19),
+(76, 'Deutschland', 0, 0, 0, 0, 19),
+(77, 'Russland', 0, 0, 0, 0, 19),
+(78, 'Katar', 0, 0, 0, 0, 19),
 (79, 'Eiffelturm', 0, 0, 1, 0, 20),
 (80, 'Brandenburger Tor', 0, 0, 0, 0, 20),
 (81, 'Big Ben', 0, 0, 0, 0, 20),
@@ -274,7 +274,11 @@ INSERT INTO `tblanswer` (`UID`, `strAnswer`, `lngCountshowed`, `lngCountselected
 (227, 'Dublin', 0, 0, 0, 0, 57),
 (228, 'Belfast', 0, 0, 1, 0, 57),
 (229, 'London', 0, 0, 0, 0, 57),
-(230, 'Swansea', 0, 0, 0, 0, 57);
+(230, 'Swansea', 0, 0, 0, 0, 57),
+(231, '50', 0, 0, 1, 0, 58),
+(232, '51', 0, 0, 0, 0, 58),
+(233, '52', 0, 0, 0, 0, 58),
+(234, '53', 0, 0, 0, 0, 58);
 
 -- --------------------------------------------------------
 
@@ -310,7 +314,7 @@ CREATE TABLE IF NOT EXISTS `tblcategory` (
   `strName` varchar(100) NOT NULL,
   `blnDeleted` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`UID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=11 ;
 
 --
 -- Daten für Tabelle `tblcategory`
@@ -320,7 +324,8 @@ INSERT INTO `tblcategory` (`UID`, `lngParentid`, `strName`, `blnDeleted`) VALUES
 (1, NULL, 'Geographie', 0),
 (2, 1, 'Geographie Allgemein', 0),
 (3, 1, 'Hauptst&auml;dte', 0),
-(4, NULL, 'Allgemeinwissen', 0);
+(4, 5, 'Allgemeinwissen', 0),
+(5, NULL, 'Wissen', 0);
 
 -- --------------------------------------------------------
 
@@ -362,7 +367,7 @@ CREATE TABLE IF NOT EXISTS `tblquestion` (
   PRIMARY KEY (`UID`),
   KEY `fk_tblquestion_tbldifficulty1_idx` (`tbldifficulty_UID`),
   KEY `fk_tblquestion_tblbackenduser1_idx` (`tblbackenduser_UID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=58 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=59 ;
 
 --
 -- Daten für Tabelle `tblquestion`
@@ -387,7 +392,7 @@ INSERT INTO `tblquestion` (`UID`, `strQuestion`, `lngCountshowed`, `lngOpttime`,
 (16, 'Wann gewann Deutschland die letzte Weltmeisterschaft im Fu&szlig;ball?', 0, 0, 0, 1, 1),
 (17, 'Wann war der Untergang der Titanic?', 0, 0, 0, 1, 1),
 (18, 'Wie hei&szlig;t der G&ouml;tterberg der Griechen?', 0, 0, 0, 1, 1),
-(19, 'Anderes Wort f&uuml;r K&auml;ltesteppen.', 0, 0, 0, 1, 1),
+(19, 'In welchem Land wird die Fu&szlig;ballweltmeisterschaft 2014 ausgetragen?', 0, 0, 0, 1, 1),
 (20, 'Wie hei&szlig;t das bekannteste Wahrzeichen Frankreichs?', 0, 0, 0, 1, 1),
 (21, 'In welchem Land liegt Vancouver?', 0, 0, 0, 1, 1),
 (22, 'Wie hei&szlig;t die griechische G&ouml;ttermutter?', 0, 0, 0, 1, 1),
@@ -425,7 +430,8 @@ INSERT INTO `tblquestion` (`UID`, `strQuestion`, `lngCountshowed`, `lngOpttime`,
 (54, 'Wie hei&szlig;t die Hauptstadt Australiens?', 0, 0, 0, 1, 1),
 (55, 'Wie hei&szlig;t die Hauptstadt der Schweiz?', 0, 0, 0, 1, 1),
 (56, 'Wie hei&szlig;t die Hauptstadt von Belgien?', 0, 0, 0, 1, 1),
-(57, 'Wie hei&szlig;t die Hauptstadt von Nordirland?', 0, 0, 0, 1, 1);
+(57, 'Wie hei&szlig;t die Hauptstadt von Nordirland?', 0, 0, 0, 1, 1),
+(58, 'Wie viele Sterne hat die amerikanische Nationalflagge?', 0, 0, 0, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -448,10 +454,12 @@ CREATE TABLE IF NOT EXISTS `tblquestion_has_tblcategory` (
 INSERT INTO `tblquestion_has_tblcategory` (`tblquestion_UID`, `tblcategory_UID`) VALUES
 (1, 2),
 (7, 2),
+(19, 2),
 (20, 2),
 (21, 2),
 (26, 2),
 (28, 2),
+(58, 2),
 (2, 3),
 (24, 3),
 (30, 3),
@@ -507,7 +515,8 @@ INSERT INTO `tblquestion_has_tblcategory` (`tblquestion_UID`, `tblcategory_UID`)
 (26, 4),
 (27, 4),
 (28, 4),
-(29, 4);
+(29, 4),
+(58, 4);
 
 -- --------------------------------------------------------
 
@@ -523,7 +532,7 @@ CREATE TABLE IF NOT EXISTS `tblsessions` (
   `tblcategory_UID` int(11) NOT NULL,
   PRIMARY KEY (`UID`),
   KEY `fk_tblsessions_tblcategory1_idx` (`tblcategory_UID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=11 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=15 ;
 
 --
 -- Daten für Tabelle `tblsessions`
@@ -539,7 +548,9 @@ INSERT INTO `tblsessions` (`UID`, `dtmStart`, `lngPoints`, `blnDeleted`, `tblcat
 (7, '2013-10-17 00:00:00', 83, 0, 2),
 (8, '2013-10-18 00:00:00', 42, 0, 2),
 (9, '2013-10-18 00:00:00', 78, 0, 3),
-(10, '2013-10-19 00:00:00', 84, 0, 2);
+(10, '2013-10-19 00:00:00', 84, 0, 2),
+(13, '2013-10-23 00:00:00', 84, 0, 4),
+(14, '2013-10-23 00:00:00', 89, 0, 4);
 
 --
 -- Constraints der exportierten Tabellen

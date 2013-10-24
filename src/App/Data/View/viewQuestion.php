@@ -37,7 +37,7 @@ FROM
         }
     }
 
-    public static function getAllquestionswithcategories($blnObjects = true, $arrOrderby = NULL) {
+    public static function getAllquestionswithcategories($blnObjects = true, $arrOrderby = NULL, $lngCategory = NULL) {
         $strARClass = 'App_Data_' . self::VIEW_ARCLASS;
         $strQuery   = '
 SELECT
@@ -67,6 +67,12 @@ FROM
 
                 foreach($arrData as $arrRow) {
                     $objQuestion    = new $strARClass($arrRow);
+
+                    if($lngCategory !== NULL) {
+                        if(!in_array($lngCategory, $objQuestion->getCategorymap())) {
+                            continue;
+                        }
+                    }
 
                     $arrResponse[]  = array(
                         'UID'               => $objQuestion->getUID(),

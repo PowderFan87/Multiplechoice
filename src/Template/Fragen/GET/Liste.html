@@ -13,6 +13,16 @@
                     <th>Kategorie</th>
                     <th></th>
                 </tr>
+                <tr>
+                    <th>&nbsp;</th>
+                    <th>
+                        <select id="lngCategory" name="lngCategory">
+                            <option value="">--- Auswahl ---</option>
+                            #VAR:txtCategories#
+                        </select>
+                    </th>
+                    <th>&nbsp;</th>
+                </tr>
             </thead>
             <tbody id="lisGame">
                 #FOREACH:arrQuestions#
@@ -54,6 +64,10 @@
                         primary: "ui-icon-plusthick"
                     },
                     text: false
+                });
+
+                $('#lngCategory').on('change', function() {
+                    window.location.href = window.location.pathname+'?fcat='+$('#lngCategory option:selected').attr('value');
                 });
             });
         </script>

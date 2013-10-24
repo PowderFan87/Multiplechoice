@@ -65,7 +65,7 @@ WHERE tblquestion_UID = ' . $this->getUID();
     }
 
     public function removeCategory($lngCategoryid) {
-        $strQuery = 'DELETE FROM tblquestion_has_tblcategory WHERE tblcategory_UID = ' . $lngCategoryid;
+        $strQuery = 'DELETE FROM tblquestion_has_tblcategory WHERE tblcategory_UID = ' . $lngCategoryid . ' AND tblquestion_UID = ' . $this->getUID();
 
         App_Factory_Resource::getResource()->exec($strQuery);
     }

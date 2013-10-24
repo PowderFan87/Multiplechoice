@@ -79,6 +79,11 @@ class Core_Web_Template
                     $mixValue = wordwrap($mixValue, array_shift($arrParams), '<br />' . "\n", false);
 
                     break;
+
+                case 'dateformat':
+                    $mixValue = date('d.m.Y', strtotime($mixValue));
+
+                    break;
             }
         }
 

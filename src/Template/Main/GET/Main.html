@@ -3,14 +3,14 @@
 
         #IF:!isset($_SESSION['loggedin'])#
         <h2 class="blueklein">Anmelden</h2>
-        
-        <form action="/Multiplechoice/htdocs/Main/Login" method="post">
+
+        <form action="#ROOT#/Main/Login" method="post">
             <label for="strName">Benutzername</label>&nbsp;<input type="text" name="strName" id="strName" />
             <br />
             <input type="submit" value="Anmelden" />
         </form>
         #/IF#
-        
+
         #IF:isset($_SESSION['loggedin'])#
         <h2 class="blueklein">Schon angemeldet!</h2>
         #/IF#

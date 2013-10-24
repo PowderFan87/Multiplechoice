@@ -1,6 +1,6 @@
 
         <h1 class="blue">Statistiken</h1>
-         
+
         <script type="text/javascript">
             $(document).ready(function(){
                 $(".btnEdit").button({
@@ -46,12 +46,12 @@
         };
 
         var chart = new google.visualization.PieChart(document.getElementById('piechart_3d'));
-        chart.draw(data, options);            
+        chart.draw(data, options);
       }
     </script>
     <table border="0">
   <tr>
-      <td>  
+      <td>
   <div id="piechart_3d" style="width: 500px; height: 350px;"></div>
       </td>
     <script type="text/javascript">
@@ -74,7 +74,7 @@
         };
 
         var chart = new google.visualization.PieChart(document.getElementById('piechart_3d2'));
-        chart.draw(data, options);            
+        chart.draw(data, options);
       }
     </script>
     <td>
@@ -87,7 +87,7 @@
       function drawChart3() {
         var data = google.visualization.arrayToDataTable([
           ['Datum', 'Sessions'],
-          #FOREACH:arrPointsessions#['#VAR:dtmStart#',#VAR:Anzahl#],#/FOREACH#
+          #FOREACH:arrPointsessions#['#VAR:dtmStart|dateformat#',#VAR:Anzahl#],#/FOREACH#
         ]);
 
         var options = {
@@ -123,7 +123,7 @@
             <tbody id="lisGame">
                 #FOREACH:arrSessions#
                 <tr>
-                    <td>#VAR:dtmStart#</td>
+                    <td>#VAR:dtmStart|dateformat#</td>
                     <td>#VAR:strName#</td>
                     <td>#VAR:lngPoints#</td>
                     <td>

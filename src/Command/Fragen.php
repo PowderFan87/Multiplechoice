@@ -230,7 +230,7 @@ class Command_Fragen extends Core_Base_Command implements IHttpRequest, IRestric
 
     private function _fillTemplate(App_Data_Question $objQuestion) {
         $this->_objResponse->UID            = $objQuestion->getUID();
-        $this->_objResponse->strQuestion    = $objQuestion->getstrQuestion();
+        $this->_objResponse->strQuestion    = html_entity_decode($objQuestion->getstrQuestion());
         $this->_objResponse->lngOpttime     = $objQuestion->getlngOpttime();
         $this->_objResponse->antwort        = $objQuestion->getAllanswers();
     }

@@ -48,7 +48,7 @@ abstract class App_Data_Base
                 $strAttrname = str_replace('get', '', $strName);
 
                 if(array_key_exists($strAttrname, $this->_arrData)) {
-                    return html_entity_decode($this->_arrData[$strAttrname]);
+                    return $this->_arrData[$strAttrname];
                 } else if($strAttrname == self::VIEW_PK) {
                     return $this->_lngUID;
                 }

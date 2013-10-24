@@ -1,30 +1,6 @@
 
         <h1 class="blue">Statistiken</h1>
-
-         <form id="action"></form>
-       <table class="ui-widget ui-widget-content">
-           <thead class="sortable">
-                <tr class="ui-widget-header">
-                    <th title="dtmStart">Datum</th>
-                    <th title="lngPoints">Kategorie</th>
-                    <th title="lngPoints">Punktzahl</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody id="lisGame">
-                #FOREACH:arrSessions#
-                <tr>
-                    <td>#VAR:dtmStart#</td>
-                    <td>#VAR:strName#</td>
-                    <td>#VAR:lngPoints#</td>
-                    <td>
-                        <button class="btnDelete" name="uid" value="#VAR:UID#" type="submit" form="action" formaction="#ROOT#/Statistiken/Loeschen" formmethod="get">Loeschen</button>
-                    </td>
-                </tr>
-                #/FOREACH#
-            </tbody>
-        </table>
-
+         
         <script type="text/javascript">
             $(document).ready(function(){
                 $(".btnEdit").button({
@@ -133,3 +109,27 @@
         </td>
     </tr>
     </table>
+    <br/>
+    <form id="action"></form>
+       <table class="ui-widget ui-widget-content">
+           <thead class="sortable">
+                <tr class="ui-widget-header">
+                    <th title="dtmStart">Datum</th>
+                    <th title="lngPoints">Kategorie</th>
+                    <th title="lngPoints">Punktzahl</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody id="lisGame">
+                #FOREACH:arrSessions#
+                <tr>
+                    <td>#VAR:dtmStart#</td>
+                    <td>#VAR:strName#</td>
+                    <td>#VAR:lngPoints#</td>
+                    <td>
+                        <button class="btnDelete" name="uid" value="#VAR:UID#" type="submit" form="action" formaction="#ROOT#/Statistiken/Loeschen" formmethod="get">Loeschen</button>
+                    </td>
+                </tr>
+                #/FOREACH#
+            </tbody>
+        </table>

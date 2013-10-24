@@ -44,6 +44,8 @@ SELECT
     *
 FROM
     ' . self::VIEW_NAME . '
+WHERE
+    blnDeleted = 0
 ';
 
         if(is_array($arrOrderby)) {

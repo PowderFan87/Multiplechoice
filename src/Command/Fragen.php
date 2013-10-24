@@ -331,7 +331,7 @@ class Command_Fragen extends Core_Base_Command implements IHttpRequest, IRestric
     public function getLoeschen() {
         $this->_objResponse->tplContent = 'Fragen_GET_Loeschen';
 
-        viewBackenduser::deleteBypk($this->_objRequest->uid);
+        viewQuestion::deleteByblndeleted($this->_objRequest->uid);
 
         header("Location: " . CFG_WEB_ROOT . "/Fragen/Liste");
     }

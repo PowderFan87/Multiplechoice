@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.0.4.1
+-- version 3.3.2deb1ubuntu1
 -- http://www.phpmyadmin.net
 --
--- Host: 127.0.0.1
--- Erstellungszeit: 25. Okt 2013 um 10:51
--- Server Version: 5.5.32
--- PHP-Version: 5.4.19
+-- Host: localhost
+-- Erstellungszeit: 25. Oktober 2013 um 11:19
+-- Server Version: 5.1.72
+-- PHP-Version: 5.3.2-1ubuntu4.21
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET time_zone = "+00:00";
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -19,8 +18,6 @@ SET time_zone = "+00:00";
 --
 -- Datenbank: `multiplechoice`
 --
-CREATE DATABASE IF NOT EXISTS `multiplechoice` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
-USE `multiplechoice`;
 
 -- --------------------------------------------------------
 
@@ -582,7 +579,3 @@ ALTER TABLE `tblquestion_has_tblcategory`
 --
 ALTER TABLE `tblsessions`
   ADD CONSTRAINT `fk_tblsessions_tblcategory1` FOREIGN KEY (`tblcategory_UID`) REFERENCES `tblcategory` (`UID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

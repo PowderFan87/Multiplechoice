@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 24. Okt 2013 um 19:18
+-- Erstellungszeit: 25. Okt 2013 um 10:51
 -- Server Version: 5.5.32
 -- PHP-Version: 5.4.19
 
@@ -323,7 +323,7 @@ CREATE TABLE IF NOT EXISTS `tblcategory` (
 INSERT INTO `tblcategory` (`UID`, `lngParentid`, `strName`, `blnDeleted`) VALUES
 (1, NULL, 'Geographie', 0),
 (2, 1, 'Geographie Allgemein', 0),
-(3, 1, 'Hauptst&auml;dte', 0),
+(3, 1, 'Landeskunde', 0),
 (4, 5, 'Allgemeinwissen', 0),
 (5, NULL, 'Wissen', 0);
 
@@ -528,6 +528,7 @@ CREATE TABLE IF NOT EXISTS `tblsessions` (
   `UID` int(11) NOT NULL AUTO_INCREMENT,
   `dtmStart` datetime NOT NULL,
   `lngPoints` int(11) NOT NULL,
+  `lngMaxpoints` int(11) NOT NULL,
   `blnDeleted` tinyint(1) NOT NULL DEFAULT '0',
   `tblcategory_UID` int(11) NOT NULL,
   PRIMARY KEY (`UID`),
@@ -538,19 +539,19 @@ CREATE TABLE IF NOT EXISTS `tblsessions` (
 -- Daten für Tabelle `tblsessions`
 --
 
-INSERT INTO `tblsessions` (`UID`, `dtmStart`, `lngPoints`, `blnDeleted`, `tblcategory_UID`) VALUES
-(1, '2013-10-13 00:00:00', 87, 0, 3),
-(2, '2013-10-13 00:00:00', 76, 0, 2),
-(3, '2013-10-14 00:00:00', 92, 0, 2),
-(4, '2013-10-15 00:00:00', 69, 0, 2),
-(5, '2013-10-15 00:00:00', 77, 0, 3),
-(6, '2013-10-15 00:00:00', 64, 0, 2),
-(7, '2013-10-17 00:00:00', 83, 0, 2),
-(8, '2013-10-18 00:00:00', 42, 0, 2),
-(9, '2013-10-18 00:00:00', 78, 0, 3),
-(10, '2013-10-19 00:00:00', 84, 0, 2),
-(13, '2013-10-23 00:00:00', 84, 0, 4),
-(14, '2013-10-23 00:00:00', 89, 0, 4);
+INSERT INTO `tblsessions` (`UID`, `dtmStart`, `lngPoints`, `lngMaxpoints`, `blnDeleted`, `tblcategory_UID`) VALUES
+(1, '2013-10-13 00:00:00', 87, 100, 0, 3),
+(2, '2013-10-13 00:00:00', 76, 100, 0, 2),
+(3, '2013-10-14 00:00:00', 92, 100, 0, 2),
+(4, '2013-10-15 00:00:00', 69, 100, 0, 2),
+(5, '2013-10-15 00:00:00', 77, 100, 0, 3),
+(6, '2013-10-15 00:00:00', 64, 100, 0, 2),
+(7, '2013-10-17 00:00:00', 83, 100, 0, 2),
+(8, '2013-10-18 00:00:00', 43, 53, 0, 2),
+(9, '2013-10-18 00:00:00', 78, 100, 0, 3),
+(10, '2013-10-19 00:00:00', 84, 100, 0, 2),
+(11, '2013-10-23 00:00:00', 84, 100, 0, 4),
+(12, '2013-10-23 00:00:00', 89, 100, 0, 4);
 
 --
 -- Constraints der exportierten Tabellen

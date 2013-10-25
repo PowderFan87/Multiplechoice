@@ -63,8 +63,8 @@
         data.addColumn('string', 'Ergebnis');
         data.addColumn('number', 'Punkte');
         data.addRows([
-           #FOREACH:arrCountsessionspoints#['Bestanden',#VAR:lngPoints#],#/FOREACH#
-           #FOREACH:arrCountsessions#['Nicht bestanden',#VAR:lngPoints#],#/FOREACH#
+           #FOREACH:arrCountsessions#['Bestanden',#VAR:lngPoints#],#/FOREACH#
+           #FOREACH:arrCountsessionspoints#['Nicht bestanden',#VAR:lngPoints#],#/FOREACH#
         ]);
 
         var options = {
@@ -115,8 +115,9 @@
            <thead class="sortable">
                 <tr class="ui-widget-header">
                     <th title="dtmStart">Datum</th>
-                    <th title="lngPoints">Kategorie</th>
-                    <th title="lngPoints">Punktzahl</th>
+                    <th title="Kategorie">Kategorie</th>
+                    <th title="lngPoints">Erreichte Punktzahl</th>
+                    <th title="lngMaxpoints">Maximale Punktzahl</th>
                     <th></th>
                 </tr>
             </thead>
@@ -126,6 +127,7 @@
                     <td>#VAR:dtmStart|dateformat#</td>
                     <td>#VAR:strName#</td>
                     <td>#VAR:lngPoints#</td>
+                    <td>#VAR:lngMaxpoints#</td>
                     <td>
                         <button class="btnDelete" name="uid" value="#VAR:UID#" type="submit" form="action" formaction="#ROOT#/Statistiken/Loeschen" formmethod="get">Loeschen</button>
                     </td>

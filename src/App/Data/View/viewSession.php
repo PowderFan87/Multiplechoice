@@ -9,7 +9,7 @@ class viewSession extends App_Data_View_Base
         $strARClass = 'App_Data_' . self::VIEW_ARCLASS;
         $strQuery   = '
 SELECT
-    tblsessions.UID, tblsessions.dtmStart, tblcategory.strName, tblsessions.lngPoints
+    tblsessions.UID, tblsessions.dtmStart, tblcategory.strName, tblsessions.lngPoints, tblsessions.lngMaxpoints
 FROM
     ' . self::VIEW_NAME . ', tblcategory
 WHERE
@@ -100,12 +100,12 @@ FROM
         $strARClass = 'App_Data_' . self::VIEW_ARCLASS;
         $strQuery   = '
 SELECT
-    COUNT(UID) As lngPoints
+    COUNT((lngPoints/lngMaxpoints)*100) As lngPoints
 FROM
     ' . self::VIEW_NAME . '
 WHERE
-    lngPoints > "84"';
-
+    ((lngPoints/lngMaxpoints)*100) >= 80';
+        
         try {
             $arrData        = App_Factory_Resource::getResource()->read($strQuery, true);
 

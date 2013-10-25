@@ -65,6 +65,7 @@ class Command_Statistiken extends Core_Base_Command implements IHttpRequest, IRe
         $this->_objResponse->UID        = $objSession->getUID();
         $this->_objResponse->dtmStart    = $objSession->getdtmStart();
         $this->_objResponse->lngPoints  = $objSession->getlngPoints();
+        $this->_objResponse->lngMaxpoints  = $objSession->getlngMaxpoints();
         $this->_objResponse->tblcategory_UID    = $objSession->gettblcategory_UID();
     }
 

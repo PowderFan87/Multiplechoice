@@ -66,7 +66,11 @@ abstract class App_Data_Base
                     if($arrArguments[0] === NULL) {
                         $this->_arrData[$strAttrname] = NULL;
                     } else {
-                        $this->_arrData[$strAttrname] = htmlentities($arrArguments[0]);
+                        if(preg_match("/.*\&szlig;.*/", $arrArguments[0])) {
+                            $this->_arrData[$strAttrname] = $arrArguments[0];
+                        } else {
+                            $this->_arrData[$strAttrname] = htmlentities($arrArguments[0]);
+                        }
                     }
 
                     $this->_blnAltered = true;

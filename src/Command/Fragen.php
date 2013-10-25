@@ -175,6 +175,7 @@ class Command_Fragen extends Core_Base_Command implements IHttpRequest, IRestric
             $objQuestion->setstrQuestion($this->_objRequest->strQuestion);
             $objQuestion->setlngOpttime($this->_objRequest->lngOpttime);
             $objQuestion->settbldifficulty_UID($this->_objRequest->difficulty);
+            $objQuestion->setlngCountshowed($this->_objRequest->lngCountshowed);
             $objQuestion->settblbackenduser_UID($objUser->getUID());
 
             if(!$objQuestion->doFullupdate()) {
@@ -230,8 +231,9 @@ class Command_Fragen extends Core_Base_Command implements IHttpRequest, IRestric
 
     private function _fillTemplate(App_Data_Question $objQuestion) {
         $this->_objResponse->UID            = $objQuestion->getUID();
-        $this->_objResponse->strQuestion    = html_entity_decode($objQuestion->getstrQuestion());
+        $this->_objResponse->strQuestion    = $objQuestion->getstrQuestion();
         $this->_objResponse->lngOpttime     = $objQuestion->getlngOpttime();
+        $this->_objResponse->lngCountshowed = $objQuestion->getlngCountshowed();
         $this->_objResponse->antwort        = $objQuestion->getAllanswers();
     }
 

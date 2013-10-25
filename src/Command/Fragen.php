@@ -199,6 +199,8 @@ class Command_Fragen extends Core_Base_Command implements IHttpRequest, IRestric
                     if($objAnswer instanceof App_Data_Answer) {
                         $objAnswer->setstrAnswer($arrAnswer['strAnswer']);
                         $objAnswer->setblnTrue((isset($arrAnswer['blnTrue']))?1:0);
+                        $objAnswer->setlngCountshowed($arrAnswer['lngCountshowed']);
+                        $objAnswer->setlngCountselected($arrAnswer['lngCountselected']);
 
                         $objQuestion->addAnswer($objAnswer);
                     }
